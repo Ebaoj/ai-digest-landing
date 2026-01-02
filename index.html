@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digest - O futuro da IA no seu email</title>
+    <meta name="description" content="Receba diariamente as descobertas mais importantes em Inteligência Artificial, direto dos pesquisadores. Grátis.">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'SEU_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        h1 span {
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.05);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+        }
+        
+        .feature-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .form-container {
+            background: rgba(255,255,255,0.1);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        input[type="email"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #fff;
+            color: #333;
+        }
+        
+        input[type="email"]::placeholder {
+            color: #999;
+        }
+        
+        button {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .guarantee {
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .social-proof {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .social-proof p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            opacity: 0.6;
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            .input-group { flex-direction: column; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">🤖 Newsletter gratuita</div>
+        
+        <h1>O futuro da <span>Inteligência Artificial</span> no seu email</h1>
+        
+        <p class="subtitle">
+            Receba diariamente as descobertas mais importantes em IA, 
+            direto dos papers acadêmicos e pesquisadores. Antes de virar notícia.
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">📄</span>
+                <span class="feature-text"><strong>Direto da fonte</strong> - Papers do arXiv analisados e explicados</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">⚡</span>
+                <span class="feature-text"><strong>Atualização diária</strong> - Todo dia às 7h no seu email</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🎯</span>
+                <span class="feature-text"><strong>Análise, não resumo</strong> - Entenda o que realmente importa</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🆓</span>
+                <span class="feature-text"><strong>100% gratuito</strong> - Sem pegadinhas, sem cartão</span>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <p class="form-title">Junte-se a quem está sempre um passo à frente</p>
+            
+            <form id="signup-form">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                    <button type="submit">Quero receber</button>
+                </div>
+            </form>
+            
+            <p class="guarantee">🔒 Seu email está seguro. Cancele quando quiser.</p>
+            
+            <div class="success-message" id="success">
+                ✅ Pronto! Amanhã às 7h você recebe sua primeira edição.
+            </div>
+        </div>
+        
+        <div class="social-proof">
+            <p>Lido por profissionais de empresas como</p>
+            <div class="logos">
+                <span>Stone</span>
+                <span>Nubank</span>
+                <span>iFood</span>
+                <span>TOTVS</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Enviando...';
+            button.disabled = true;
+            
+            try {
+                // Envia para Supabase
+                const response = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/ai_digest_subscribers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ 
+                        email: email,
+                        source: 'landing_page',
+                        created_at: new Date().toISOString()
+                    })
+                });
+                
+                if (response.ok) {
+                    // Track conversion
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead');
+                    }
+                    
+                    document.getElementById('success').style.display = 'block';
+                    document.getElementById('email').value = '';
+                    button.textContent = 'Inscrito! ✓';
+                } else {
+                    throw new Error('Erro ao cadastrar');
+                }
+            } catch (error) {
+                button.textContent = 'Tentar novamente';
+                button.disabled = false;
+                alert('Erro ao cadastrar. Tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>
