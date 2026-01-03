@@ -144,6 +144,26 @@
             line-height: 1.7;
         }
 
+        .hero-cta {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 16px 32px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+            transition: all 0.2s;
+        }
+
+        .hero-cta:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 102, 255, 0.4);
+        }
+
         /* Social Proof */
         .social-proof {
             text-align: center;
@@ -422,6 +442,8 @@
                     <p class="subtitle">
                         Todo dia às 7h no seu email. Papers de IA traduzidos e explicados. Antes de virar notícia.
                     </p>
+
+                    <a href="#signup-form" class="hero-cta">Quero receber amanhã às 7h</a>
                 </header>
             </div>
         </section>
