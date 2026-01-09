@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digest Pro</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a;">
+        <tr>
+            <td align="center" style="padding: 32px 16px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px;">
+
+                    <!-- Header -->
+                    <tr>
+                        <td style="padding: 0 0 24px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <span style="font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px;">AI Digest</span>
+                                        <span style="display: inline-block; background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #ffffff; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.5px;">PRO</span>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span style="font-size: 12px; color: #525252;">{{date}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Greeting -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <p style="margin: 0; font-size: 14px; color: #a3a3a3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                Bom dia. Aqui está o que você precisa saber hoje.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- SECTION 1: Lançamento -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #141414; border-radius: 8px; border: 1px solid #262626;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <!-- Section Header -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 0 0 16px 0;">
+                                                    <span style="display: inline-block; background-color: #7c3aed; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Lançamento</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Content -->
+                                        <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #ffffff; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{launch_title}}
+                                        </h2>
+                                        <p style="margin: 0 0 16px 0; font-size: 14px; color: #a3a3a3; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{launch_description}}
+                                        </p>
+
+                                        <!-- Stats/Specs -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; border-radius: 6px; padding: 12px; width: 100%;">
+                                            <tr>
+                                                <td style="padding: 12px;">
+                                                    <code style="font-size: 12px; color: #22c55e;">{{launch_specs}}</code>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Link -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" style="margin-top: 16px;">
+                                            <tr>
+                                                <td>
+                                                    <a href="{{launch_link}}" style="font-size: 13px; color: #8b5cf6; text-decoration: none;">Ver mais →</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- SECTION 2: Deep Dive -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #141414; border-radius: 8px; border: 1px solid #262626;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <!-- Section Header -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 0 0 16px 0;">
+                                                    <span style="display: inline-block; background-color: #0891b2; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Deep Dive</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Content -->
+                                        <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #ffffff; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{deepdive_title}}
+                                        </h2>
+                                        <p style="margin: 0 0 16px 0; font-size: 14px; color: #a3a3a3; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{deepdive_description}}
+                                        </p>
+
+                                        <!-- Key Points -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            {{deepdive_points}}
+                                        </table>
+
+                                        <!-- Link -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" style="margin-top: 16px;">
+                                            <tr>
+                                                <td>
+                                                    <a href="{{deepdive_link}}" style="font-size: 13px; color: #0891b2; text-decoration: none;">Ler análise completa →</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- SECTION 3: Code Snippet -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #141414; border-radius: 8px; border: 1px solid #262626;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <!-- Section Header -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 0 0 16px 0;">
+                                                    <span style="display: inline-block; background-color: #16a34a; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Code</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Content -->
+                                        <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #ffffff; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{code_title}}
+                                        </h2>
+                                        <p style="margin: 0 0 16px 0; font-size: 14px; color: #a3a3a3; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                            {{code_description}}
+                                        </p>
+
+                                        <!-- Code Block -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; border-radius: 6px; border: 1px solid #262626;">
+                                            <tr>
+                                                <td style="padding: 16px; overflow-x: auto;">
+                                                    <pre style="margin: 0; font-size: 12px; color: #e5e5e5; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;"><code>{{code_snippet}}</code></pre>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Repo Link -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" style="margin-top: 16px;">
+                                            <tr>
+                                                <td>
+                                                    <a href="{{code_repo_link}}" style="font-size: 13px; color: #16a34a; text-decoration: none;">Ver no GitHub →</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- SECTION 4: Papers da Semana -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #141414; border-radius: 8px; border: 1px solid #262626;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <!-- Section Header -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 0 0 16px 0;">
+                                                    <span style="display: inline-block; background-color: #dc2626; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Papers</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Papers List -->
+                                        {{papers_list}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- SECTION 5: Repos Trending -->
+                    <tr>
+                        <td style="padding: 0 0 32px 0;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #141414; border-radius: 8px; border: 1px solid #262626;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <!-- Section Header -->
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 0 0 16px 0;">
+                                                    <span style="display: inline-block; background-color: #525252; color: #ffffff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Repos</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <!-- Repos List -->
+                                        {{repos_list}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 0 24px 0;">
+                            <div style="height: 1px; background-color: #262626;"></div>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="text-align: center; padding: 0 0 16px 0;">
+                            <p style="margin: 0 0 8px 0; font-size: 12px; color: #525252; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                AI Digest Pro — Para quem constrói com IA
+                            </p>
+                            <p style="margin: 0; font-size: 11px; color: #404040; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                                <a href="{{unsubscribe_url}}" style="color: #525252; text-decoration: underline;">Cancelar inscrição</a>
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

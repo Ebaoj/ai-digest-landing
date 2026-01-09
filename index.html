@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Digest - O futuro da IA no seu email</title>
-    <meta name="description" content="Receba diariamente as descobertas mais importantes em Inteligência Artificial, direto dos pesquisadores. Grátis.">
+    <title>AI Digest - IA prática para o seu dia a dia</title>
+    <meta name="description" content="As novidades de IA que vão impactar seu trabalho, explicadas de forma direta. Todo dia às 7h. Grátis.">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -29,18 +29,23 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #0066FF;
-            --primary-hover: #0052CC;
-            --primary-light: #E6F0FF;
-            --bg: #FAFBFC;
+            /* AI Digest Brand Guide v1.0 - Índigo */
+            --primary: #3730a3;
+            --primary-hover: #4f46e5;
+            --primary-light: #e0e7ff;
+            --primary-dark: #312e81;
+            --bg: #f8fafc;
             --bg-card: #FFFFFF;
-            --text-primary: #1A1A2E;
-            --text-secondary: #6B7280;
-            --text-muted: #9CA3AF;
-            --border: #E5E7EB;
-            --border-light: #F3F4F6;
-            --success: #10B981;
-            --success-bg: #ECFDF5;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --success: #059669;
+            --success-bg: #d1fae5;
+            --warning: #f59e0b;
+            --error: #dc2626;
+            --info: #0891b2;
         }
 
         body {
@@ -58,14 +63,19 @@
             flex-direction: column;
         }
 
-        /* Subtle gradient background */
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
             padding: 80px 24px 60px;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .container-wide {
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -75,15 +85,34 @@
             margin-bottom: 48px;
         }
 
-        .brand-name {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .brand-name span {
-            color: var(--primary);
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-icon-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         /* Header */
@@ -96,41 +125,26 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--bg-card);
-            color: var(--text-secondary);
+            background: var(--primary-light);
+            color: var(--primary);
             padding: 8px 16px;
             border-radius: 100px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 28px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.95); }
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.75rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 20px;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: -0.03em;
         }
 
         h1 .highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, #00AAFF 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -139,7 +153,7 @@
         .subtitle {
             font-size: 1.125rem;
             color: var(--text-secondary);
-            max-width: 440px;
+            max-width: 460px;
             margin: 0 auto;
             line-height: 1.7;
         }
@@ -154,14 +168,14 @@
             font-weight: 600;
             text-decoration: none;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 2px 8px rgba(55, 48, 163, 0.3);
             transition: all 0.2s;
         }
 
         .hero-cta:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 4px 16px rgba(55, 48, 163, 0.4);
         }
 
         /* Social Proof */
@@ -172,160 +186,88 @@
             background: var(--bg-card);
         }
 
-        .social-proof-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .social-proof-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
         }
 
-        .logos {
+        .social-proof-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .social-proof-roles {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 32px;
+            gap: 24px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
-        .logo-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            letter-spacing: -0.01em;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        .logo-name:hover {
-            opacity: 1;
-        }
-
-        /* Form Section */
-        .form-section {
-            padding: 60px 24px;
-        }
-
-        .form-card {
-            background: var(--bg-card);
+        .role-tag {
+            font-size: 13px;
+            color: var(--text-muted);
+            background: var(--bg);
+            padding: 6px 14px;
             border-radius: 20px;
-            padding: 40px;
-            box-shadow:
-                0 1px 3px rgba(0,0,0,0.04),
-                0 8px 24px rgba(0,0,0,0.06);
-            border: 1px solid var(--border);
-            max-width: 480px;
+        }
+
+        /* Para quem é */
+        .audience-section {
+            padding: 48px 24px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .audience-title {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
-        .form-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .form-subtitle {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 28px;
-            text-align: center;
-        }
-
-        .input-wrapper {
-            margin-bottom: 16px;
-        }
-
-        input[type="email"] {
-            width: 100%;
-            padding: 16px 18px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 16px;
-            font-family: inherit;
-            background: var(--bg);
-            color: var(--text-primary);
-            transition: all 0.2s;
-        }
-
-        input[type="email"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px var(--primary-light);
-            background: var(--bg-card);
-        }
-
-        input[type="email"]::placeholder {
-            color: var(--text-muted);
-        }
-
-        button {
-            width: 100%;
-            padding: 16px 24px;
-            background: var(--primary);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
-        }
-
-        button:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-footer {
+        .audience-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .form-footer svg {
-            width: 14px;
-            height: 14px;
-            opacity: 0.6;
-        }
-
-        .success-message {
-            display: none;
-            background: var(--success-bg);
-            border: 1px solid #A7F3D0;
-            color: #065F46;
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-top: 20px;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 500;
-            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .audience-item .check {
+            color: var(--success);
+            font-weight: bold;
         }
 
         /* Features */
         .features-section {
             padding: 48px 24px 60px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-light);
+            background: var(--bg);
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 32px;
         }
 
         .features {
@@ -376,6 +318,956 @@
             line-height: 1.5;
         }
 
+        /* Form Section */
+        .form-section {
+            padding: 60px 24px;
+            background: var(--bg-card);
+        }
+
+        .form-card {
+            background: var(--bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow:
+                0 1px 3px rgba(0,0,0,0.04),
+                0 8px 24px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .input-wrapper {
+            margin-bottom: 16px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        input[type="email"]::placeholder {
+            color: var(--text-muted);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(55, 48, 163, 0.3);
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(55, 48, 163, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .form-footer svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.6;
+        }
+
+        .success-message {
+            display: none;
+            background: var(--success-bg);
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Quiz Page */
+        .quiz-page {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .quiz-page.hidden {
+            display: none;
+        }
+
+        .quiz-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .quiz-brand-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-brand-icon-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .quiz-brand-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .quiz-container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            max-width: 540px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        @media (min-width: 768px) {
+            .quiz-page {
+                padding: 60px 40px;
+            }
+
+            .quiz-container {
+                max-width: 580px;
+                padding: 48px;
+            }
+
+            .quiz-brand {
+                margin-bottom: 48px;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .quiz-progress-bar {
+            flex: 1;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar.active {
+            background: var(--primary);
+        }
+
+        .quiz-progress-bar.completed {
+            background: var(--success);
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quiz-question {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .quiz-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-options.grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 18px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .quiz-options.grid-2 .quiz-option {
+            flex-direction: column;
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .quiz-option-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .quiz-options.grid-2 .quiz-option-icon {
+            font-size: 36px;
+            margin-bottom: 4px;
+        }
+
+        .quiz-option-text {
+            flex: 1;
+        }
+
+        .quiz-option-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .quiz-option-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        @media (max-width: 540px) {
+            .quiz-options.grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-options.grid-2 .quiz-option {
+                flex-direction: row;
+                text-align: left;
+                padding: 18px 20px;
+            }
+
+            .quiz-options.grid-2 .quiz-option-icon {
+                font-size: 28px;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Quiz Result - Landing Page Style */
+        .quiz-result {
+            text-align: center;
+        }
+
+        .quiz-result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--success-bg);
+            color: var(--success);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .quiz-result-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .quiz-result-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .quiz-result-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .quiz-result-product {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 0;
+            margin-bottom: 24px;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .quiz-result-product-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .quiz-result-product-logo {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-result-product-logo-dot {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .quiz-result-product-info {
+            flex: 1;
+        }
+
+        .quiz-result-product-name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .quiz-result-product-tagline {
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .quiz-result-product-tag {
+            background: #fff;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .quiz-result-product-body {
+            padding: 20px;
+        }
+
+        .quiz-result-product-desc {
+            color: var(--text-primary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quiz-result-features-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .quiz-result-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-result-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .quiz-result-feature-icon {
+            width: 22px;
+            height: 22px;
+            background: var(--success-bg);
+            color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Newsletter Preview */
+        .quiz-result-preview {
+            margin-bottom: 24px;
+        }
+
+        .quiz-result-preview-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .newsletter-preview {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+            text-align: left;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .newsletter-preview::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .newsletter-preview::-webkit-scrollbar-track {
+            background: var(--border-light);
+        }
+
+        .newsletter-preview::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 3px;
+        }
+
+        .newsletter-preview::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        .newsletter-preview-header {
+            background: var(--primary);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .newsletter-preview-logo {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .newsletter-preview-date {
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+        }
+
+        .newsletter-preview-section {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .newsletter-preview-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .newsletter-preview-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .newsletter-preview-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .newsletter-preview-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .newsletter-preview-list {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .newsletter-preview-list li {
+            margin-bottom: 4px;
+        }
+
+        .newsletter-preview-fade {
+            display: none;
+        }
+
+        /* CTA antes do preview */
+        .quiz-result-cta-top {
+            margin-bottom: 20px;
+        }
+
+        .quiz-result-cta-top input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 12px;
+            background: var(--bg);
+        }
+
+        .quiz-result-cta-top input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+            background: #fff;
+        }
+
+        .quiz-result-cta-top button {
+            width: 100%;
+            padding: 16px 24px;
+            background: #059669;
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .quiz-result-cta-top button:hover {
+            background: #047857;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
+        }
+
+        .quiz-result-cta-top-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .quiz-result-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .quiz-result-divider::before,
+        .quiz-result-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .quiz-result-inbox {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-result-inbox-header {
+            background: #2d2d2d;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-result-inbox-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff5f57;
+        }
+
+        .quiz-result-inbox-dot:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .quiz-result-inbox-dot:nth-child(3) {
+            background: #28ca41;
+        }
+
+        .quiz-result-inbox-label {
+            margin-left: 8px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .quiz-result-email {
+            background: #fff;
+            margin: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .quiz-result-email-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-light);
+            background: #fafafa;
+        }
+
+        .quiz-result-email-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .quiz-result-email-avatar-dot {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .quiz-result-email-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .quiz-result-email-from {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quiz-result-email-date {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .quiz-result-email-subject {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        .quiz-result-email-preheader {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .quiz-result-email-body {
+            padding: 16px;
+        }
+
+        .quiz-result-email-section {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .quiz-result-email-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .quiz-result-email-section:first-child {
+            padding-top: 0;
+        }
+
+        .quiz-result-email-section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .quiz-result-email-section-icon {
+            font-size: 14px;
+        }
+
+        .quiz-result-email-section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .quiz-result-email-section-content {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .quiz-result-form {
+            margin-top: 20px;
+        }
+
+        .quiz-result-form input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 12px;
+            background: var(--bg);
+        }
+
+        .quiz-result-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+            background: #fff;
+        }
+
+        .quiz-result-form button {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(55, 48, 163, 0.3);
+        }
+
+        .quiz-result-form button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .quiz-result-form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .quiz-skip {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .quiz-skip:hover {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 540px) {
+            .quiz-container {
+                padding: 28px 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .quiz-question {
+                font-size: 18px;
+            }
+
+            .quiz-result-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-result-product {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Exemplo de conteúdo */
+        .preview-section {
+            padding: 48px 24px;
+            background: var(--bg);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .preview-title {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .preview-card {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: var(--primary);
+            color: white;
+            padding: 16px 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .preview-content {
+            padding: 20px;
+        }
+
+        .preview-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .preview-item:last-child {
+            border-bottom: none;
+        }
+
+        .preview-item-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .preview-item-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
         /* Footer */
         .footer {
             text-align: center;
@@ -386,26 +1278,110 @@
             background: var(--bg-card);
         }
 
-        /* Responsive */
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .hero-section {
+                padding: 100px 40px 80px;
+            }
+
+            h1 {
+                font-size: 3.25rem;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+                max-width: 520px;
+            }
+
+            .social-proof {
+                padding: 40px 40px 32px;
+            }
+
+            .social-proof-number {
+                font-size: 40px;
+            }
+
+            .audience-section {
+                padding: 56px 40px;
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 700px;
+            }
+
+            .features-section {
+                padding: 64px 40px 80px;
+            }
+
+            .features-title {
+                font-size: 26px;
+                margin-bottom: 40px;
+            }
+
+            .features {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                max-width: 800px;
+            }
+
+            .feature {
+                padding: 24px 28px;
+            }
+
+            .preview-section {
+                padding: 64px 40px;
+            }
+
+            .preview-card {
+                max-width: 560px;
+            }
+
+            .form-section {
+                padding: 80px 40px;
+            }
+
+            .form-card {
+                max-width: 520px;
+                padding: 48px;
+            }
+
+            .form-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                padding: 120px 60px 100px;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .features {
+                max-width: 900px;
+            }
+        }
+
+        /* Mobile Styles */
         @media (max-width: 540px) {
             .hero-section {
                 padding: 60px 20px 40px;
             }
 
             h1 {
-                font-size: 2.25rem;
+                font-size: 2rem;
             }
 
             .subtitle {
                 font-size: 1rem;
             }
 
-            .logos {
-                gap: 20px;
-            }
-
-            .logo-name {
-                font-size: 14px;
+            .audience-grid {
+                grid-template-columns: 1fr;
             }
 
             .form-card {
@@ -419,28 +1395,332 @@
             .features-section {
                 padding: 20px 20px 60px;
             }
+
+            .social-proof-roles {
+                gap: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="page">
+    <!-- Quiz Page (Main) -->
+    <div class="quiz-page" id="quiz-page">
+        <!-- Brand -->
+        <div class="quiz-brand">
+            <div class="quiz-brand-icon">
+                <div class="quiz-brand-icon-dot"></div>
+            </div>
+            <span class="quiz-brand-name">AI Digest</span>
+        </div>
+
+        <div class="quiz-container">
+            <!-- Progress Bar -->
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar active" id="progress-1"></div>
+                <div class="quiz-progress-bar" id="progress-2"></div>
+                <div class="quiz-progress-bar" id="progress-3"></div>
+            </div>
+
+            <!-- Step 1: Área de atuação -->
+            <div class="quiz-step active" id="step-1">
+                <h2 class="quiz-question">Qual é a sua área?</h2>
+                <p class="quiz-subtitle">Isso nos ajuda a personalizar o conteúdo</p>
+                <div class="quiz-options grid-2">
+                    <div class="quiz-option" data-step="1" data-value="tech" data-label="Tecnologia">
+                        <span class="quiz-option-icon">👨‍💻</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Tecnologia</div>
+                            <div class="quiz-option-desc">Dev, Data, Produto, DevOps</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="business" data-label="Negócios">
+                        <span class="quiz-option-icon">💼</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Negócios</div>
+                            <div class="quiz-option-desc">Vendas, Marketing, Gestão</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="creative" data-label="Criativo">
+                        <span class="quiz-option-icon">🎨</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Criativo</div>
+                            <div class="quiz-option-desc">Design, Conteúdo, Social Media</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="other" data-label="Outra área">
+                        <span class="quiz-option-icon">🌟</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Outra área</div>
+                            <div class="quiz-option-desc">RH, Jurídico, Financeiro, etc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Nível de conhecimento em IA -->
+            <div class="quiz-step" id="step-2">
+                <h2 class="quiz-question">Seu nível com IA?</h2>
+                <p class="quiz-subtitle">Seja honesto, não tem resposta errada</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-step="2" data-value="beginner" data-label="Iniciante">
+                        <span class="quiz-option-icon">🌱</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Estou começando</div>
+                            <div class="quiz-option-desc">Uso ChatGPT às vezes, quero aprender mais</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="2" data-value="intermediate" data-label="Intermediário">
+                        <span class="quiz-option-icon">🚀</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Uso no dia a dia</div>
+                            <div class="quiz-option-desc">Já uso IA para trabalhar, quero otimizar</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="2" data-value="advanced" data-label="Avançado">
+                        <span class="quiz-option-icon">⚡</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Avançado</div>
+                            <div class="quiz-option-desc">Desenvolvo com APIs, crio automações</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Objetivo -->
+            <div class="quiz-step" id="step-3">
+                <h2 class="quiz-question">O que você busca?</h2>
+                <p class="quiz-subtitle">Qual seu principal objetivo com IA</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-step="3" data-value="productivity" data-label="Produtividade">
+                        <span class="quiz-option-icon">⏱️</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Ser mais produtivo</div>
+                            <div class="quiz-option-desc">Automatizar tarefas, ganhar tempo</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="3" data-value="uptodate" data-label="Atualização">
+                        <span class="quiz-option-icon">📰</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Me manter atualizado</div>
+                            <div class="quiz-option-desc">Saber o que está acontecendo em IA</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="3" data-value="build" data-label="Construir">
+                        <span class="quiz-option-icon">🔧</span>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Construir com IA</div>
+                            <div class="quiz-option-desc">Criar produtos, apps, automações</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Resultado - Mini Landing Page -->
+            <div class="quiz-step" id="step-result">
+                <div class="quiz-result">
+                    <!-- Badge de diagnóstico -->
+                    <div class="quiz-result-badge">
+                        <span>✓</span> Diagnóstico completo
+                    </div>
+
+                    <!-- Perfil identificado -->
+                    <div class="quiz-result-icon" id="result-icon">🚀</div>
+                    <h2 class="quiz-result-title" id="result-title">Seu perfil: Optimizer</h2>
+                    <p class="quiz-result-subtitle" id="result-subtitle">
+                        Você quer usar IA para trabalhar melhor e mais rápido.
+                    </p>
+
+                    <!-- Card do Produto -->
+                    <div class="quiz-result-product">
+                        <!-- Header com gradiente -->
+                        <div class="quiz-result-product-header" id="result-product-header">
+                            <div class="quiz-result-product-logo" id="result-product-logo">
+                                <div class="quiz-result-product-logo-dot"></div>
+                            </div>
+                            <div class="quiz-result-product-info">
+                                <span class="quiz-result-product-name" id="result-product-name">AI Digest</span>
+                                <span class="quiz-result-product-tagline" id="result-product-tagline">IA direto ao ponto</span>
+                            </div>
+                            <span class="quiz-result-product-tag" id="result-product-tag">GRÁTIS</span>
+                        </div>
+
+                        <!-- Body com descrição e features -->
+                        <div class="quiz-result-product-body">
+                            <p class="quiz-result-product-desc" id="result-product-desc">
+                                Ferramentas práticas e casos de uso reais para aplicar IA no seu dia a dia. Sem código, sem complicação.
+                            </p>
+
+                            <p class="quiz-result-features-title">O que você recebe</p>
+                            <div class="quiz-result-features" id="result-features">
+                                <div class="quiz-result-feature">
+                                    <span class="quiz-result-feature-icon">✓</span>
+                                    <span>Ferramentas novas para testar hoje</span>
+                                </div>
+                                <div class="quiz-result-feature">
+                                    <span class="quiz-result-feature-icon">✓</span>
+                                    <span>Como profissionais estão usando IA</span>
+                                </div>
+                                <div class="quiz-result-feature">
+                                    <span class="quiz-result-feature-icon">✓</span>
+                                    <span>Dicas práticas de produtividade</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA principal (antes do preview) -->
+                    <div class="quiz-result-cta-top">
+                        <input type="email" id="quiz-email" placeholder="seu@email.com" required>
+                        <button type="button" id="quiz-submit">Receber amanhã às 7h — é grátis</button>
+                        <p class="quiz-result-cta-top-footer">
+                            <span>🔒</span> Sem cartão. Cancele quando quiser.
+                        </p>
+                    </div>
+
+                    <!-- Divisor -->
+                    <div class="quiz-result-divider">
+                        <span>veja um exemplo</span>
+                    </div>
+
+                    <!-- Preview da Newsletter Real -->
+                    <div class="quiz-result-preview">
+                        <p class="quiz-result-preview-title">Última edição enviada</p>
+
+                        <!-- Preview Essencial -->
+                        <div class="newsletter-preview" id="newsletter-preview-essencial">
+                            <!-- Header -->
+                            <div class="newsletter-preview-header">
+                                <div class="newsletter-preview-logo">AI Digest</div>
+                                <div class="newsletter-preview-date">08 Jan 2026</div>
+                            </div>
+
+                            <!-- Destaque -->
+                            <div class="newsletter-preview-section">
+                                <div class="newsletter-preview-label" style="color: var(--primary);">🔥 DESTAQUE</div>
+                                <h3 class="newsletter-preview-title">Gmail vai virar seu assistente pessoal de emails</h3>
+                                <p class="newsletter-preview-text">O Google anunciou a maior atualização do Gmail em 20 anos. A "Caixa de Entrada com IA" cria um resumo do que importa: "pagar conta de luz", "responder cliente X"...</p>
+                            </div>
+
+                            <!-- Notícias -->
+                            <div class="newsletter-preview-section newsletter-preview-news">
+                                <div class="newsletter-preview-label">📰 O QUE MAIS ROLOU</div>
+                                <ul class="newsletter-preview-list">
+                                    <li>Google Classroom transforma aulas em podcasts com IA</li>
+                                    <li>OpenAI lança ChatGPT Health</li>
+                                    <li>CES 2026: robôs e IA física dominam</li>
+                                </ul>
+                            </div>
+
+                            <!-- Caso de Uso -->
+                            <div class="newsletter-preview-section newsletter-preview-usecase">
+                                <div class="newsletter-preview-label" style="color: #f57c00;">💡 CASO DE USO</div>
+                                <p class="newsletter-preview-text">Você é professor e ninguém lê apostila de 30 páginas? Usa o Google Classroom que transforma sua aula em podcast. Alunos escutam no busão, na academia...</p>
+                            </div>
+
+                            <!-- Dica -->
+                            <div class="newsletter-preview-section newsletter-preview-tip">
+                                <div class="newsletter-preview-label" style="color: #2e7d32;">⚡ DICA RÁPIDA</div>
+                                <p class="newsletter-preview-text"><strong>Peça pra IA ser do contra.</strong> Antes de decidir algo, peça pro ChatGPT listar 5 razões pelas quais sua ideia pode dar errado.</p>
+                            </div>
+
+                            <!-- Ferramenta do dia -->
+                            <div class="newsletter-preview-section">
+                                <div class="newsletter-preview-label" style="color: #7c3aed;">🛠️ FERRAMENTA DO DIA</div>
+                                <h3 class="newsletter-preview-title">NotebookLM</h3>
+                                <p class="newsletter-preview-text">Sobe seus PDFs e documentos e a IA cria resumos, responde perguntas e até gera podcasts sobre o conteúdo. Grátis do Google.</p>
+                            </div>
+
+                            <!-- Footer da newsletter -->
+                            <div class="newsletter-preview-section" style="background: var(--bg); text-align: center; padding: 20px;">
+                                <p class="newsletter-preview-text" style="font-size: 12px; color: var(--text-muted);">
+                                    Isso é tudo por hoje! Nos vemos amanhã às 7h.<br><br>
+                                    <strong style="color: var(--text-secondary);">AI Digest</strong> · IA direto ao ponto
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Preview Pro (edição técnica antiga) -->
+                        <div class="newsletter-preview" id="newsletter-preview-pro" style="display: none;">
+                            <!-- Header Pro -->
+                            <div class="newsletter-preview-header" style="background: #18181b;">
+                                <div class="newsletter-preview-logo">AI Digest Pro</div>
+                                <div class="newsletter-preview-date">15 Dec 2025</div>
+                            </div>
+
+                            <!-- Destaque técnico -->
+                            <div class="newsletter-preview-section">
+                                <div class="newsletter-preview-label" style="color: #f59e0b;">⚡ LANÇAMENTO</div>
+                                <h3 class="newsletter-preview-title">Gemini 2.0 Flash: Google entra na briga dos agentes</h3>
+                                <p class="newsletter-preview-text">O novo modelo do Google traz "agentic behaviors" nativos - controle de mouse, teclado e navegação. Benchmark MMLU: 90.2% (vs GPT-4o: 88.7%). API já disponível.</p>
+                            </div>
+
+                            <!-- Deep dive técnico -->
+                            <div class="newsletter-preview-section">
+                                <div class="newsletter-preview-label" style="color: #3b82f6;">🔬 DEEP DIVE</div>
+                                <h3 class="newsletter-preview-title">RAG está morto? Context caching muda o jogo</h3>
+                                <p class="newsletter-preview-text">Com janelas de 1M+ tokens e cache de contexto, vale a pena manter infra de RAG? Análise de trade-offs: latência, custo, precisão. Spoiler: depende do seu caso de uso.</p>
+                            </div>
+
+                            <!-- Code snippet -->
+                            <div class="newsletter-preview-section" style="background: #f8fafc;">
+                                <div class="newsletter-preview-label" style="color: #059669;">💻 CODE SNIPPET</div>
+                                <h3 class="newsletter-preview-title">Structured outputs com Pydantic + Claude</h3>
+                                <p class="newsletter-preview-text" style="font-family: monospace; font-size: 12px; background: #1e1e1e; color: #d4d4d4; padding: 12px; border-radius: 6px; margin-top: 8px;">
+                                    from anthropic import Anthropic<br>
+                                    from pydantic import BaseModel<br><br>
+                                    class Analysis(BaseModel):<br>
+                                    &nbsp;&nbsp;sentiment: str<br>
+                                    &nbsp;&nbsp;confidence: float
+                                </p>
+                            </div>
+
+                            <!-- Papers -->
+                            <div class="newsletter-preview-section">
+                                <div class="newsletter-preview-label">📄 PAPERS DA SEMANA</div>
+                                <ul class="newsletter-preview-list">
+                                    <li><strong>Attention Is All You Need... Still</strong> - Análise de 7 anos do Transformer</li>
+                                    <li><strong>Constitutional AI v2</strong> - Novo approach da Anthropic para alignment</li>
+                                </ul>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="newsletter-preview-section" style="background: var(--bg); text-align: center; padding: 20px;">
+                                <p class="newsletter-preview-text" style="font-size: 12px; color: var(--text-muted);">
+                                    That's all, folks! See you tomorrow.<br><br>
+                                    <strong style="color: var(--text-secondary);">AI Digest Pro</strong> · Para quem constrói com IA
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="quiz-skip" id="quiz-skip-main" style="text-align: center;">Pular quiz</p>
+        </div>
+    </div>
+
+    <div class="page" id="main-page" style="display: none;">
         <!-- Hero -->
         <section class="hero-section">
             <div class="container">
                 <div class="brand">
-                    <span class="brand-name"><span>AI</span> Digest</span>
+                    <div class="brand-logo">
+                        <div class="brand-icon">
+                            <div class="brand-icon-dot"></div>
+                        </div>
+                        <span class="brand-name">AI Digest</span>
+                    </div>
                 </div>
 
                 <header class="header">
                     <div class="badge">
-                        <span class="badge-dot"></span>
-                        Newsletter gratuita
+                        Grátis, todo dia às 7h
                     </div>
 
-                    <h1>Leia em <span class="highlight">3 minutos</span> o que 95% só vão saber em 6 meses</h1>
+                    <h1>IA que você <span class="highlight">realmente usa</span></h1>
 
                     <p class="subtitle">
-                        Todo dia às 7h no seu email. Papers de IA traduzidos e explicados. Antes de virar notícia.
+                        As novidades de Inteligência Artificial que vão mudar seu trabalho, explicadas de forma direta e prática.
                     </p>
 
                     <a href="#signup-form" class="hero-cta">Quero receber amanhã às 7h</a>
@@ -450,38 +1730,98 @@
 
         <!-- Social Proof -->
         <section class="social-proof">
-            <p class="social-proof-label">Para quem quer se manter atualizado</p>
-            <div class="logos">
-                <span class="logo-name">Desenvolvedores</span>
-                <span class="logo-name">Product Managers</span>
-                <span class="logo-name">Empreendedores</span>
+            <div class="social-proof-number">80+</div>
+            <p class="social-proof-label">profissionais recebem todo dia</p>
+            <div class="social-proof-roles">
+                <span class="role-tag">Vendedores</span>
+                <span class="role-tag">Marketing</span>
+                <span class="role-tag">RH</span>
+                <span class="role-tag">Gestores</span>
+            </div>
+        </section>
+
+        <!-- Para quem é -->
+        <section class="audience-section">
+            <p class="audience-title">Perfeito para você se:</p>
+            <div class="audience-grid">
+                <div class="audience-item">
+                    <span class="check">✓</span>
+                    <span>Não é programador</span>
+                </div>
+                <div class="audience-item">
+                    <span class="check">✓</span>
+                    <span>Quer usar IA no trabalho</span>
+                </div>
+                <div class="audience-item">
+                    <span class="check">✓</span>
+                    <span>Tem pouco tempo</span>
+                </div>
+                <div class="audience-item">
+                    <span class="check">✓</span>
+                    <span>Cansou de hype vazio</span>
+                </div>
             </div>
         </section>
 
         <!-- Features -->
         <section class="features-section">
+            <h2 class="features-title">O que você recebe todo dia</h2>
             <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📰</div>
+                    <div class="feature-content">
+                        <h3>Notícias que importam</h3>
+                        <p>As novidades de IA que vão afetar seu trabalho. Filtradas e traduzidas.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-content">
+                        <h3>Casos de uso reais</h3>
+                        <p>Como pessoas comuns estão usando IA para trabalhar melhor.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🛠️</div>
+                    <div class="feature-content">
+                        <h3>Ferramentas práticas</h3>
+                        <p>Apps e ferramentas de IA que você pode começar a usar hoje.</p>
+                    </div>
+                </div>
+
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
                     <div class="feature-content">
                         <h3>3 minutos de leitura</h3>
-                        <p>Resumo direto ao ponto. Leia no café da manhã.</p>
+                        <p>Direto ao ponto. Leia no café da manhã.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="feature">
-                    <div class="feature-icon">🔬</div>
-                    <div class="feature-content">
-                        <h3>Direto dos papers</h3>
-                        <p>ArXiv traduzido e explicado. Antes de virar manchete.</p>
+        <!-- Preview -->
+        <section class="preview-section">
+            <p class="preview-title">Exemplo de uma edição</p>
+            <div class="preview-card">
+                <div class="preview-header">AI Digest - 09/01/2026</div>
+                <div class="preview-content">
+                    <div class="preview-item">
+                        <div class="preview-item-title">🎯 Destaque</div>
+                        <div class="preview-item-desc">Google lança IA que controla seu computador</div>
                     </div>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-content">
-                        <h3>Zero enrolação</h3>
-                        <p>Só o que vai impactar seu trabalho. Sem hype.</p>
+                    <div class="preview-item">
+                        <div class="preview-item-title">📰 O que mais rolou</div>
+                        <div class="preview-item-desc">5 notícias rápidas sobre IA</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-item-title">💡 Caso de uso</div>
+                        <div class="preview-item-desc">Como um vendedor usa ChatGPT para prospecção</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-item-title">🛠️ App do dia</div>
+                        <div class="preview-item-desc">Ferramenta grátis para criar apresentações com IA</div>
                     </div>
                 </div>
             </div>
@@ -494,10 +1834,22 @@
                 <p class="form-subtitle">Todo dia às 7h, direto na sua caixa de entrada</p>
 
                 <form id="signup-form">
+                    <input type="hidden" id="profile" name="profile" value="">
+                    <input type="hidden" id="content-type" name="content_type" value="essencial">
+                    <input type="hidden" id="quiz-area" name="quiz_area" value="">
+                    <input type="hidden" id="quiz-level" name="quiz_level" value="">
+                    <input type="hidden" id="quiz-goal" name="quiz_goal" value="">
+
                     <div class="input-wrapper">
                         <input type="email" id="email" placeholder="seu@email.com" required>
                     </div>
+                    <div class="input-wrapper" style="margin-top: 12px;">
+                        <input type="text" id="company" placeholder="Empresa (opcional)" style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 15px; width: 100%; color: var(--text-primary);">
+                    </div>
                     <button type="submit">Quero receber amanhã às 7h</button>
+                    <p class="terms-notice" style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 12px; line-height: 1.5;">
+                        Ao se inscrever, você concorda com nossos <a href="termos.html" target="_blank" style="color: var(--text-secondary); text-decoration: underline;">Termos de Uso</a> e <a href="privacidade.html" target="_blank" style="color: var(--text-secondary); text-decoration: underline;">Política de Privacidade</a>.
+                    </p>
                 </form>
 
                 <div class="form-footer">
@@ -515,17 +1867,321 @@
 
         <!-- Footer -->
         <footer class="footer">
-            AI Digest &copy; 2026
+            AI Digest &copy; 2026 · Feito para quem quer usar IA sem complicação
         </footer>
     </div>
 
     <script>
+        // ==================== QUIZ LOGIC ====================
+        const quizState = {
+            currentStep: 1,
+            answers: {
+                area: '',
+                level: '',
+                goal: ''
+            }
+        };
+
+        // Perfis baseados nas respostas
+        const profiles = {
+            // Tech + Avançado + Build = Builder (Pro)
+            builder: {
+                icon: '🔧',
+                title: 'Seu perfil: Builder',
+                subtitle: 'Você constrói com IA e quer ficar por dentro das últimas novidades técnicas.',
+                productName: 'AI Digest Pro',
+                productDesc: 'Conteúdo técnico para quem desenvolve: novos modelos, papers relevantes, APIs, arquiteturas de agentes e automações avançadas.',
+                features: [
+                    'Papers e lançamentos de modelos explicados',
+                    'Tutoriais de APIs e integrações',
+                    'Arquiteturas de agentes e RAG'
+                ],
+                contentType: 'tecnico',
+                profile: 'tech'
+            },
+            // Tech + Intermediário/Avançado + qualquer = Practitioner (Pro)
+            practitioner: {
+                icon: '⚡',
+                title: 'Seu perfil: Practitioner',
+                subtitle: 'Você já usa IA no trabalho e quer dominar técnicas mais avançadas.',
+                productName: 'AI Digest Pro',
+                productDesc: 'Para quem já programa e quer ir além: prompts avançados, automações complexas e integrações com APIs.',
+                features: [
+                    'Técnicas avançadas de prompting',
+                    'Automações e workflows com IA',
+                    'Code snippets e exemplos práticos'
+                ],
+                contentType: 'tecnico',
+                profile: 'tech'
+            },
+            // Non-tech + qualquer nível + produtividade/atualização = Optimizer (Essencial)
+            optimizer: {
+                icon: '🚀',
+                title: 'Seu perfil: Optimizer',
+                subtitle: 'Você quer usar IA para trabalhar melhor e mais rápido.',
+                productName: 'AI Digest',
+                productDesc: 'Ferramentas práticas e casos de uso reais para aplicar IA no seu dia a dia. Sem código, sem complicação.',
+                features: [
+                    'Ferramentas novas para testar hoje',
+                    'Como profissionais estão usando IA',
+                    'Dicas práticas de produtividade'
+                ],
+                contentType: 'essencial',
+                profile: 'non-tech'
+            },
+            // Qualquer + Iniciante + atualização = Explorer (Essencial)
+            explorer: {
+                icon: '🌱',
+                title: 'Seu perfil: Explorer',
+                subtitle: 'Você está descobrindo IA e quer entender o que realmente importa.',
+                productName: 'AI Digest',
+                productDesc: 'As novidades de IA explicadas de forma clara. Foco no que vai impactar seu trabalho, sem termos complicados.',
+                features: [
+                    'Novidades explicadas de forma simples',
+                    'O que você precisa saber (e o que é hype)',
+                    'Primeiros passos com ferramentas de IA'
+                ],
+                contentType: 'essencial',
+                profile: 'non-tech'
+            },
+            // Creative + qualquer = Creator (Essencial)
+            creator: {
+                icon: '🎨',
+                title: 'Seu perfil: Creator',
+                subtitle: 'Você trabalha com criação e quer IA como aliada da sua criatividade.',
+                productName: 'AI Digest',
+                productDesc: 'Ferramentas de IA para criação de conteúdo, design, vídeo e produção criativa. Potencie seu trabalho.',
+                features: [
+                    'Ferramentas de IA para criativos',
+                    'Prompts para design e conteúdo',
+                    'Cases de criadores usando IA'
+                ],
+                contentType: 'essencial',
+                profile: 'creative'
+            }
+        };
+
+        function determineProfile() {
+            const { area, level, goal } = quizState.answers;
+
+            // Tech + Avançado + Build = Builder
+            if (area === 'tech' && level === 'advanced' && goal === 'build') {
+                return profiles.builder;
+            }
+
+            // Tech + (Intermediário ou Avançado) = Practitioner
+            if (area === 'tech' && (level === 'intermediate' || level === 'advanced')) {
+                return profiles.practitioner;
+            }
+
+            // Tech + Iniciante = Explorer (não pro ainda)
+            if (area === 'tech' && level === 'beginner') {
+                return profiles.explorer;
+            }
+
+            // Creative = Creator
+            if (area === 'creative') {
+                return profiles.creator;
+            }
+
+            // Business/Other + qualquer + (produtividade ou build) = Optimizer
+            if ((area === 'business' || area === 'other') && (goal === 'productivity' || goal === 'build')) {
+                return profiles.optimizer;
+            }
+
+            // Default = Explorer
+            return profiles.explorer;
+        }
+
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.quiz-step').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            // Show current step
+            const targetStep = stepNumber === 'result' ? 'step-result' : `step-${stepNumber}`;
+            document.getElementById(targetStep).classList.add('active');
+
+            // Update progress bars
+            for (let i = 1; i <= 3; i++) {
+                const bar = document.getElementById(`progress-${i}`);
+                bar.classList.remove('active', 'completed');
+
+                if (stepNumber === 'result') {
+                    bar.classList.add('completed');
+                } else if (i < stepNumber) {
+                    bar.classList.add('completed');
+                } else if (i === stepNumber) {
+                    bar.classList.add('active');
+                }
+            }
+
+            // Hide skip button on result
+            const skipMain = document.getElementById('quiz-skip-main');
+            if (stepNumber === 'result') {
+                skipMain.style.display = 'none';
+            } else {
+                skipMain.style.display = 'block';
+            }
+        }
+
+        function showResult() {
+            const profile = determineProfile();
+
+            // Perfil do usuário
+            document.getElementById('result-icon').textContent = profile.icon;
+            document.getElementById('result-title').textContent = profile.title;
+            document.getElementById('result-subtitle').textContent = profile.subtitle;
+
+            // Card do produto
+            document.getElementById('result-product-name').textContent = profile.productName;
+            document.getElementById('result-product-desc').textContent = profile.productDesc;
+
+            // Estilo diferente para Pro (preto)
+            const header = document.getElementById('result-product-header');
+            const logo = document.getElementById('result-product-logo');
+            const tag = document.getElementById('result-product-tag');
+
+            // Previews das newsletters
+            const previewEssencial = document.getElementById('newsletter-preview-essencial');
+            const previewPro = document.getElementById('newsletter-preview-pro');
+
+            if (profile.contentType === 'tecnico') {
+                // AI Digest Pro - estilo preto premium
+                header.style.background = 'linear-gradient(135deg, #18181b 0%, #27272a 100%)';
+                logo.style.background = 'rgba(255,255,255,0.1)';
+                logo.style.borderColor = 'rgba(255,255,255,0.2)';
+                tag.style.background = '#fff';
+                tag.style.color = '#18181b';
+                tag.textContent = 'GRÁTIS';
+                // Mostrar preview Pro
+                previewEssencial.style.display = 'none';
+                previewPro.style.display = 'block';
+            } else {
+                // AI Digest normal - estilo índigo
+                header.style.background = 'linear-gradient(135deg, var(--primary) 0%, #6366f1 100%)';
+                logo.style.background = 'rgba(255,255,255,0.2)';
+                logo.style.borderColor = 'rgba(255,255,255,0.3)';
+                tag.style.background = '#fff';
+                tag.style.color = 'var(--primary)';
+                tag.textContent = 'GRÁTIS';
+                // Mostrar preview Essencial
+                previewEssencial.style.display = 'block';
+                previewPro.style.display = 'none';
+            }
+
+            // Features personalizadas
+            const featuresContainer = document.getElementById('result-features');
+            featuresContainer.innerHTML = profile.features.map(feature => `
+                <div class="quiz-result-feature">
+                    <span class="quiz-result-feature-icon">✓</span>
+                    <span>${feature}</span>
+                </div>
+            `).join('');
+
+            // Set hidden form values
+            document.getElementById('profile').value = profile.profile;
+            document.getElementById('content-type').value = profile.contentType;
+            document.getElementById('quiz-area').value = quizState.answers.area;
+            document.getElementById('quiz-level').value = quizState.answers.level;
+            document.getElementById('quiz-goal').value = quizState.answers.goal;
+
+            showStep('result');
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-page').classList.add('hidden');
+            document.getElementById('main-page').style.display = 'block';
+        }
+
+        // Quiz option click handlers
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const step = parseInt(this.dataset.step);
+                const value = this.dataset.value;
+
+                // Save answer
+                if (step === 1) quizState.answers.area = value;
+                if (step === 2) quizState.answers.level = value;
+                if (step === 3) quizState.answers.goal = value;
+
+                // Next step or show result
+                setTimeout(() => {
+                    if (step < 3) {
+                        quizState.currentStep = step + 1;
+                        showStep(quizState.currentStep);
+                    } else {
+                        showResult();
+                    }
+                }, 200);
+            });
+        });
+
+        // Skip quiz
+        document.getElementById('quiz-skip-main').addEventListener('click', closeQuiz);
+        document.getElementById('quiz-skip').addEventListener('click', closeQuiz);
+
+        // Quiz form submit
+        document.getElementById('quiz-submit').addEventListener('click', async function() {
+            const email = document.getElementById('quiz-email').value;
+            if (!email || !email.includes('@')) {
+                document.getElementById('quiz-email').focus();
+                return;
+            }
+
+            this.textContent = 'Enviando...';
+            this.disabled = true;
+
+            try {
+                const response = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/ai_digest_subscribers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        company: document.getElementById('company').value || null,
+                        source: 'quiz',
+                        profile: document.getElementById('profile').value,
+                        content_type: document.getElementById('content-type').value,
+                        quiz_area: quizState.answers.area,
+                        quiz_level: quizState.answers.level,
+                        quiz_goal: quizState.answers.goal,
+                        created_at: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: document.getElementById('content-type').value,
+                            content_category: document.getElementById('profile').value
+                        });
+                    }
+
+                    this.textContent = '✅ Inscrito!';
+                    setTimeout(closeQuiz, 1500);
+                } else {
+                    throw new Error('Erro');
+                }
+            } catch (error) {
+                this.textContent = 'Tentar novamente';
+                this.disabled = false;
+            }
+        });
+
+        // ==================== MAIN FORM ====================
         document.getElementById('signup-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const email = document.getElementById('email').value;
+            const profile = document.getElementById('profile').value;
+            const contentType = document.getElementById('content-type').value;
             const button = this.querySelector('button');
-            const originalText = button.textContent;
 
             button.textContent = 'Enviando...';
             button.disabled = true;
@@ -541,17 +2197,30 @@
                     },
                     body: JSON.stringify({
                         email: email,
+                        company: document.getElementById('company').value || null,
                         source: 'landing_page',
+                        profile: profile || 'unknown',
+                        content_type: contentType || 'essencial',
                         created_at: new Date().toISOString()
                     })
                 });
 
                 if (response.ok) {
                     if (typeof fbq !== 'undefined') {
-                        fbq('track', 'Lead');
+                        fbq('track', 'Lead', {
+                            content_name: contentType,
+                            content_category: profile
+                        });
                     }
 
-                    document.getElementById('success').style.display = 'block';
+                    const successMsg = document.getElementById('success');
+                    if (contentType === 'tecnico') {
+                        successMsg.innerHTML = '✅ Anotado! Quando o AI Digest Pro estiver pronto, você será o primeiro a saber. Enquanto isso, vai receber o Essencial.';
+                    } else {
+                        successMsg.innerHTML = '✅ Pronto! Amanhã às 7h você recebe a primeira edição.';
+                    }
+                    successMsg.style.display = 'block';
+
                     document.getElementById('email').value = '';
                     button.textContent = 'Inscrito!';
                 } else {
