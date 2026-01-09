@@ -1571,9 +1571,13 @@
                     <!-- CTA principal (antes do preview) -->
                     <div class="quiz-result-cta-top">
                         <input type="email" id="quiz-email" placeholder="seu@email.com" required>
+                        <input type="text" id="quiz-company" placeholder="Empresa (opcional)" style="margin-top: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 15px; width: 100%; color: var(--text-primary);">
                         <button type="button" id="quiz-submit">Receber amanhã às 7h — é grátis</button>
                         <p class="quiz-result-cta-top-footer">
                             <span>🔒</span> Sem cartão. Cancele quando quiser.
+                        </p>
+                        <p style="font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 8px; line-height: 1.5;">
+                            Ao se inscrever, você concorda com nossos <a href="termos.html" target="_blank" style="color: var(--text-secondary); text-decoration: underline;">Termos de Uso</a> e <a href="privacidade.html" target="_blank" style="color: var(--text-secondary); text-decoration: underline;">Política de Privacidade</a>.
                         </p>
                     </div>
 
@@ -2125,6 +2129,7 @@
         // Quiz form submit
         document.getElementById('quiz-submit').addEventListener('click', async function() {
             const email = document.getElementById('quiz-email').value;
+            const quizCompany = document.getElementById('quiz-company').value;
             if (!email || !email.includes('@')) {
                 document.getElementById('quiz-email').focus();
                 return;
@@ -2144,7 +2149,7 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        company: document.getElementById('company').value || null,
+                        company: quizCompany || null,
                         source: 'quiz',
                         profile: document.getElementById('profile').value,
                         content_type: document.getElementById('content-type').value,
