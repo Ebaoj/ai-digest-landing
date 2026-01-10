@@ -1,1 +1,4 @@
 .vercel
+*.py
+supabase/
+*.sql
