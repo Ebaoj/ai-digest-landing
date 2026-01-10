@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Digest - Avaliação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .emoji { font-size: 48px; margin-bottom: 16px; }
+        .stars { font-size: 36px; margin-bottom: 16px; letter-spacing: 4px; }
+        .stars .filled { color: #f59e0b; }
+        .stars .empty { color: #d1d5db; }
+        .message { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+        .message.success { color: #059669; }
+        .message.error { color: #dc2626; }
+        .sub { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
+        .logo { color: #3730a3; font-weight: 700; font-size: 18px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3730a3;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .loading { display: none; }
+        .loading.show { display: block; }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #3730a3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p style="color: #666;">Salvando sua avaliação...</p>
+        </div>
+
+        <div id="result" style="display: none;">
+            <div class="emoji" id="emoji"></div>
+            <div class="stars" id="stars"></div>
+            <div class="message" id="message"></div>
+            <div class="sub" id="sub"></div>
+            <div class="logo">AI Digest</div>
+            <a href="https://ai-digest-landing.vercel.app" class="back-link">← Voltar para o site</a>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+        const rating = parseInt(params.get('rating')) || 0;
+        const error = params.get('error');
+
+        const loadingEl = document.getElementById('loading');
+        const resultEl = document.getElementById('result');
+        const emojiEl = document.getElementById('emoji');
+        const starsEl = document.getElementById('stars');
+        const messageEl = document.getElementById('message');
+        const subEl = document.getElementById('sub');
+
+        function showResult() {
+            loadingEl.style.display = 'none';
+            resultEl.style.display = 'block';
+
+            if (status === 'success') {
+                emojiEl.textContent = '🎉';
+                messageEl.textContent = 'Obrigado pela avaliação!';
+                messageEl.className = 'message success';
+                subEl.textContent = 'Sua opinião nos ajuda a melhorar!';
+
+                // Render stars
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHtml += `<span class="${i <= rating ? 'filled' : 'empty'}">★</span>`;
+                }
+                starsEl.innerHTML = starsHtml;
+            } else if (status === 'duplicate') {
+                emojiEl.textContent = '👍';
+                messageEl.textContent = 'Você já avaliou esta edição!';
+                messageEl.className = 'message success';
+                subEl.textContent = 'Obrigado por participar!';
+
+                let starsHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHtml += `<span class="${i <= rating ? 'filled' : 'empty'}">★</span>`;
+                }
+                starsEl.innerHTML = starsHtml;
+            } else {
+                emojiEl.textContent = '😔';
+                messageEl.textContent = error || 'Erro ao salvar avaliação';
+                messageEl.className = 'message error';
+                subEl.textContent = 'Tente novamente mais tarde.';
+                starsEl.style.display = 'none';
+            }
+        }
+
+        // Show result immediately
+        showResult();
+    </script>
+</body>
+</html>
