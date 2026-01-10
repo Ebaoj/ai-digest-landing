@@ -783,12 +783,10 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        name: name || null,
                         company: company || null,
                         source: 'landing_v2',
                         profile: 'unknown',
-                        content_type: 'essencial',
-                        created_at: new Date().toISOString()
+                        content_type: 'essencial'
                     })
                 });
 
