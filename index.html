@@ -2138,6 +2138,19 @@
             this.disabled = true;
 
             try {
+                const payload = {
+                    email: email,
+                    company: quizCompany || null,
+                    source: 'quiz',
+                    profile: document.getElementById('profile').value || 'unknown',
+                    content_type: document.getElementById('content-type').value || 'essencial',
+                    quiz_area: quizState.answers.area || null,
+                    quiz_level: quizState.answers.level || null,
+                    quiz_goal: quizState.answers.goal || null
+                };
+
+                console.log('Enviando:', payload);
+
                 const response = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/ai_digest_subscribers', {
                     method: 'POST',
                     headers: {
@@ -2146,18 +2159,10 @@
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
                         'Prefer': 'return=minimal'
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        company: quizCompany || null,
-                        source: 'quiz',
-                        profile: document.getElementById('profile').value,
-                        content_type: document.getElementById('content-type').value,
-                        quiz_area: quizState.answers.area,
-                        quiz_level: quizState.answers.level,
-                        quiz_goal: quizState.answers.goal,
-                        created_at: new Date().toISOString()
-                    })
+                    body: JSON.stringify(payload)
                 });
+
+                console.log('Response status:', response.status);
 
                 if (response.ok) {
                     if (typeof fbq !== 'undefined') {
@@ -2168,12 +2173,23 @@
                     }
 
                     this.textContent = '✅ Inscrito!';
+                    this.style.background = '#059669';
                     setTimeout(closeQuiz, 1500);
                 } else {
-                    throw new Error('Erro');
+                    const errorText = await response.text();
+                    console.log('Error response:', errorText);
+
+                    if (errorText.includes('duplicate') || errorText.includes('unique')) {
+                        this.textContent = '✅ Você já está inscrito!';
+                        this.style.background = '#059669';
+                        setTimeout(closeQuiz, 1500);
+                    } else {
+                        throw new Error(errorText);
+                    }
                 }
             } catch (error) {
-                this.textContent = 'Tentar novamente';
+                console.error('Erro ao inscrever:', error);
+                this.textContent = 'Erro - tente novamente';
                 this.disabled = false;
             }
         });
