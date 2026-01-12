@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Painel de Indicações - AI Digest</title>
+    <meta name="robots" content="noindex">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 24px 0 12px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(129, 140, 248, 0.3);
+            border-top-color: #818cf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .error-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .error-text {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Referral Link Box */
+        .link-card {
+            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 32px;
+        }
+
+        .link-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        .link-display {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            word-break: break-all;
+            margin-bottom: 16px;
+        }
+
+        .link-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-white {
+            background: #ffffff;
+            color: #3730a3;
+        }
+
+        .btn-white:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Rewards Section */
+        .rewards-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 32px;
+        }
+
+        .rewards-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .reward-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reward-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .reward-badge {
+            background: rgba(129, 140, 248, 0.2);
+            color: #818cf8;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+
+        .reward-badge.unlocked {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .reward-text {
+            flex: 1;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        .reward-check {
+            color: #22c55e;
+            font-size: 20px;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 32px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .progress-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #818cf8;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #818cf8 0%, #c084fc 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Share Buttons */
+        .share-section {
+            text-align: center;
+        }
+
+        .share-title {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #94a3b8;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .share-whatsapp { background: #25D366; }
+        .share-twitter { background: #1DA1F2; }
+        .share-linkedin { background: #0A66C2; }
+        .share-email { background: #6366f1; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #22c55e;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AI Digest</div>
+            <h1 class="title">🎁 Seu Painel de Indicações</h1>
+            <p class="subtitle">Indique amigos e ganhe recompensas</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Carregando seus dados...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-card" style="display: none;">
+            <div class="error-icon">😕</div>
+            <h2 class="error-title">Link inválido</h2>
+            <p class="error-text">Não conseguimos encontrar seu perfil. Verifique se o link está correto.</p>
+        </div>
+
+        <!-- Main Content -->
+        <div id="content" style="display: none;">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="referral-count">0</div>
+                    <div class="stat-label">indicações confirmadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="next-reward">3</div>
+                    <div class="stat-label">pra próxima recompensa</div>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span class="progress-label">Progresso para próxima recompensa</span>
+                    <span class="progress-value" id="progress-text">0/3</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Referral Link -->
+            <div class="link-card">
+                <div class="link-label">Seu link exclusivo</div>
+                <div class="link-display" id="referral-link">-</div>
+                <div class="link-actions">
+                    <button class="btn btn-white" onclick="copyLink()">
+                        📋 Copiar link
+                    </button>
+                    <a href="#" id="whatsapp-share" class="btn btn-outline">
+                        📱 WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Rewards -->
+            <div class="rewards-card">
+                <h2 class="rewards-title">🏆 Recompensas</h2>
+
+                <div class="reward-item" id="reward-3">
+                    <span class="reward-badge">3 amigos</span>
+                    <span class="reward-text">Guia "50 Prompts que Funcionam" (PDF)</span>
+                    <span class="reward-check" style="display: none;">✓</span>
+                </div>
+
+                <div class="reward-item" id="reward-5">
+                    <span class="reward-badge">5 amigos</span>
+                    <span class="reward-text">AI Digest Pro por 1 mês</span>
+                    <span class="reward-check" style="display: none;">✓</span>
+                </div>
+
+                <div class="reward-item" id="reward-10">
+                    <span class="reward-badge">10 amigos</span>
+                    <span class="reward-text">Mentoria de 30min sobre IA</span>
+                    <span class="reward-check" style="display: none;">✓</span>
+                </div>
+            </div>
+
+            <!-- Share -->
+            <div class="share-section">
+                <p class="share-title">Compartilhe onde preferir:</p>
+                <div class="share-buttons">
+                    <a href="#" id="share-whatsapp" class="share-btn share-whatsapp" title="WhatsApp">💬</a>
+                    <a href="#" id="share-twitter" class="share-btn share-twitter" title="Twitter/X">🐦</a>
+                    <a href="#" id="share-linkedin" class="share-btn share-linkedin" title="LinkedIn">💼</a>
+                    <a href="#" id="share-email" class="share-btn share-email" title="Email">✉️</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Link copiado!</div>
+
+    <script>
+        const SUPABASE_URL = 'https://yvhtpboejndktqoxbnbn.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc';
+        const LANDING_URL = 'https://ai-digest-landing.vercel.app';
+
+        let referralUrl = '';
+
+        // Get email from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+
+        async function loadData() {
+            if (!email) {
+                showError();
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `${SUPABASE_URL}/rest/v1/ai_digest_subscribers?email=eq.${encodeURIComponent(email)}&select=email,referral_code,referral_count`,
+                    {
+                        headers: {
+                            'apikey': SUPABASE_KEY,
+                            'Authorization': `Bearer ${SUPABASE_KEY}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!data || data.length === 0) {
+                    showError();
+                    return;
+                }
+
+                const subscriber = data[0];
+                displayData(subscriber);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError();
+            }
+        }
+
+        function displayData(subscriber) {
+            const referralCode = subscriber.referral_code || '';
+            const referralCount = subscriber.referral_count || 0;
+
+            referralUrl = `${LANDING_URL}?ref=${referralCode}`;
+
+            // Update stats
+            document.getElementById('referral-count').textContent = referralCount;
+
+            // Calculate next reward
+            let nextReward, progress, progressMax;
+            if (referralCount < 3) {
+                nextReward = 3 - referralCount;
+                progress = referralCount;
+                progressMax = 3;
+            } else if (referralCount < 5) {
+                nextReward = 5 - referralCount;
+                progress = referralCount - 3;
+                progressMax = 2;
+            } else if (referralCount < 10) {
+                nextReward = 10 - referralCount;
+                progress = referralCount - 5;
+                progressMax = 5;
+            } else {
+                nextReward = '🎉';
+                progress = 1;
+                progressMax = 1;
+            }
+
+            document.getElementById('next-reward').textContent = nextReward;
+            document.getElementById('progress-text').textContent = `${progress}/${progressMax}`;
+            document.getElementById('progress-fill').style.width = `${(progress / progressMax) * 100}%`;
+
+            // Update link
+            document.getElementById('referral-link').textContent = referralUrl;
+
+            // Update share buttons
+            const shareText = encodeURIComponent(`Tô recebendo uma newsletter muito boa sobre IA. Se inscreve: ${referralUrl}`);
+            const shareUrl = encodeURIComponent(referralUrl);
+
+            document.getElementById('whatsapp-share').href = `https://wa.me/?text=${shareText}`;
+            document.getElementById('share-whatsapp').href = `https://wa.me/?text=${shareText}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+            document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+            document.getElementById('share-email').href = `mailto:?subject=Newsletter sobre IA&body=${shareText}`;
+
+            // Update rewards checkmarks
+            if (referralCount >= 3) {
+                const el = document.getElementById('reward-3');
+                el.querySelector('.reward-badge').classList.add('unlocked');
+                el.querySelector('.reward-check').style.display = 'block';
+            }
+            if (referralCount >= 5) {
+                const el = document.getElementById('reward-5');
+                el.querySelector('.reward-badge').classList.add('unlocked');
+                el.querySelector('.reward-check').style.display = 'block';
+            }
+            if (referralCount >= 10) {
+                const el = document.getElementById('reward-10');
+                el.querySelector('.reward-badge').classList.add('unlocked');
+                el.querySelector('.reward-check').style.display = 'block';
+            }
+
+            // Show content
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        function showError() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(referralUrl).then(() => {
+                showToast('Link copiado!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>

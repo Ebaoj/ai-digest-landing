@@ -1876,6 +1876,19 @@
     </div>
 
     <script>
+        // ==================== REFERRAL TRACKING ====================
+        const urlParams = new URLSearchParams(window.location.search);
+        const referralCode = urlParams.get('ref');
+
+        // Store referral code for later use
+        if (referralCode) {
+            sessionStorage.setItem('referral_code', referralCode);
+            console.log('Referral code detected:', referralCode);
+        }
+
+        // Get stored referral code (in case user navigates away and comes back)
+        const storedReferralCode = sessionStorage.getItem('referral_code') || referralCode;
+
         // ==================== QUIZ LOGIC ====================
         const quizState = {
             currentStep: 1,
@@ -2172,6 +2185,24 @@
                         });
                     }
 
+                    // Process referral if exists
+                    if (storedReferralCode) {
+                        try {
+                            await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/process-referral', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    referred_email: email,
+                                    referral_code: storedReferralCode
+                                })
+                            });
+                            console.log('Referral processed');
+                            sessionStorage.removeItem('referral_code');
+                        } catch (refError) {
+                            console.log('Referral processing failed:', refError);
+                        }
+                    }
+
                     this.textContent = '✅ Inscrito!';
                     this.style.background = '#059669';
                     setTimeout(closeQuiz, 1500);
@@ -2231,6 +2262,24 @@
                             content_name: contentType,
                             content_category: profile
                         });
+                    }
+
+                    // Process referral if exists
+                    if (storedReferralCode) {
+                        try {
+                            await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/process-referral', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    referred_email: email,
+                                    referral_code: storedReferralCode
+                                })
+                            });
+                            console.log('Referral processed');
+                            sessionStorage.removeItem('referral_code');
+                        } catch (refError) {
+                            console.log('Referral processing failed:', refError);
+                        }
                     }
 
                     const successMsg = document.getElementById('success');
