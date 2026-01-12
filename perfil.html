@@ -442,44 +442,52 @@
             <div class="progress-step" id="prog-3"></div>
         </div>
 
-        <!-- Step 1: Área -->
+        <!-- Step 1: Cargo/Função -->
         <div class="step" id="step-1">
             <div class="step-header">
                 <div class="step-number">Pergunta 1 de 3</div>
-                <h2 class="step-title">Qual é a sua área?</h2>
-                <p class="step-subtitle">Isso nos ajuda a escolher os melhores exemplos pra você</p>
+                <h2 class="step-title">O que você faz?</h2>
+                <p class="step-subtitle">Para trazer exemplos relevantes pro seu dia a dia</p>
             </div>
 
-            <div class="options" id="options-area">
-                <div class="option" data-value="tech">
+            <div class="options" id="options-role">
+                <div class="option" data-value="founder">
+                    <div class="option-icon">🚀</div>
+                    <div class="option-content">
+                        <div class="option-title">Founder / CEO</div>
+                        <div class="option-desc">Empreendedor, dono do negócio</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="manager">
+                    <div class="option-icon">👔</div>
+                    <div class="option-content">
+                        <div class="option-title">Gestor / Líder</div>
+                        <div class="option-desc">Gerente, coordenador, head de área</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="specialist">
+                    <div class="option-icon">💼</div>
+                    <div class="option-content">
+                        <div class="option-title">Especialista / Analista</div>
+                        <div class="option-desc">Executor, individual contributor</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="dev">
                     <div class="option-icon">💻</div>
                     <div class="option-content">
-                        <div class="option-title">Tecnologia / Dev</div>
-                        <div class="option-desc">Programação, dados, produto</div>
+                        <div class="option-title">Dev / Técnico</div>
+                        <div class="option-desc">Programador, engenheiro, dados</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="business">
-                    <div class="option-icon">📊</div>
+                <div class="option" data-value="freelancer">
+                    <div class="option-icon">✨</div>
                     <div class="option-content">
-                        <div class="option-title">Negócios / Gestão</div>
-                        <div class="option-desc">Marketing, vendas, operações</div>
-                    </div>
-                    <div class="option-check"></div>
-                </div>
-                <div class="option" data-value="creative">
-                    <div class="option-icon">🎨</div>
-                    <div class="option-content">
-                        <div class="option-title">Criativo / Design</div>
-                        <div class="option-desc">Design, conteúdo, mídia</div>
-                    </div>
-                    <div class="option-check"></div>
-                </div>
-                <div class="option" data-value="other">
-                    <div class="option-icon">🌟</div>
-                    <div class="option-content">
-                        <div class="option-title">Outra área</div>
-                        <div class="option-desc">Saúde, educação, jurídico, etc</div>
+                        <div class="option-title">Freelancer / Autônomo</div>
+                        <div class="option-desc">Trabalho independente</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -490,36 +498,52 @@
             </div>
         </div>
 
-        <!-- Step 2: Nível -->
+        <!-- Step 2: Tamanho da Empresa -->
         <div class="step" id="step-2">
             <div class="step-header">
                 <div class="step-number">Pergunta 2 de 3</div>
-                <h2 class="step-title">Seu nível com IA?</h2>
-                <p class="step-subtitle">Para calibrar a profundidade do conteúdo</p>
+                <h2 class="step-title">Tamanho da sua empresa?</h2>
+                <p class="step-subtitle">Cada realidade tem desafios diferentes</p>
             </div>
 
-            <div class="options" id="options-level">
-                <div class="option" data-value="beginner">
-                    <div class="option-icon">🌱</div>
+            <div class="options" id="options-size">
+                <div class="option" data-value="solo">
+                    <div class="option-icon">🙋</div>
                     <div class="option-content">
-                        <div class="option-title">Iniciante</div>
-                        <div class="option-desc">Ainda explorando, uso ChatGPT às vezes</div>
+                        <div class="option-title">Só eu</div>
+                        <div class="option-desc">Trabalho sozinho</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="intermediate">
-                    <div class="option-icon">🚀</div>
+                <div class="option" data-value="small">
+                    <div class="option-icon">👥</div>
                     <div class="option-content">
-                        <div class="option-title">Intermediário</div>
-                        <div class="option-desc">Uso no dia a dia, quero otimizar</div>
+                        <div class="option-title">2-10 pessoas</div>
+                        <div class="option-desc">Time pequeno, startup early</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="advanced">
-                    <div class="option-icon">⚡</div>
+                <div class="option" data-value="medium">
+                    <div class="option-icon">🏢</div>
                     <div class="option-content">
-                        <div class="option-title">Avançado</div>
-                        <div class="option-desc">Crio automações, uso APIs, desenvolvo</div>
+                        <div class="option-title">11-50 pessoas</div>
+                        <div class="option-desc">Empresa em crescimento</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="large">
+                    <div class="option-icon">🏛️</div>
+                    <div class="option-content">
+                        <div class="option-title">50+ pessoas</div>
+                        <div class="option-desc">Empresa estabelecida</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="enterprise">
+                    <div class="option-icon">🌐</div>
+                    <div class="option-content">
+                        <div class="option-title">Corporação</div>
+                        <div class="option-desc">Grande empresa, multinacional</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -531,44 +555,44 @@
             </div>
         </div>
 
-        <!-- Step 3: Objetivo -->
+        <!-- Step 3: Maior Desafio -->
         <div class="step" id="step-3">
             <div class="step-header">
                 <div class="step-number">Pergunta 3 de 3</div>
-                <h2 class="step-title">O que você quer alcançar?</h2>
+                <h2 class="step-title">Seu maior desafio com IA?</h2>
                 <p class="step-subtitle">Para focar no que mais importa pra você</p>
             </div>
 
-            <div class="options" id="options-goal">
-                <div class="option" data-value="productivity">
-                    <div class="option-icon">⏱️</div>
+            <div class="options" id="options-challenge">
+                <div class="option" data-value="getting_started">
+                    <div class="option-icon">🌱</div>
                     <div class="option-content">
-                        <div class="option-title">Ser mais produtivo</div>
-                        <div class="option-desc">Automatizar tarefas, economizar tempo</div>
+                        <div class="option-title">Não sei por onde começar</div>
+                        <div class="option-desc">Quero entender o básico primeiro</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="uptodate">
-                    <div class="option-icon">📰</div>
+                <div class="option" data-value="automate">
+                    <div class="option-icon">⚡</div>
                     <div class="option-content">
-                        <div class="option-title">Me manter atualizado</div>
-                        <div class="option-desc">Saber o que está acontecendo em IA</div>
+                        <div class="option-title">Quero automatizar tarefas</div>
+                        <div class="option-desc">Ganhar tempo no dia a dia</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="build">
+                <div class="option" data-value="build_products">
                     <div class="option-icon">🔧</div>
                     <div class="option-content">
-                        <div class="option-title">Criar com IA</div>
-                        <div class="option-desc">Desenvolver projetos, produtos, apps</div>
+                        <div class="option-title">Quero criar produtos com IA</div>
+                        <div class="option-desc">Desenvolver soluções, apps, serviços</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
-                <div class="option" data-value="career">
-                    <div class="option-icon">📈</div>
+                <div class="option" data-value="convince_team">
+                    <div class="option-icon">🎯</div>
                     <div class="option-content">
-                        <div class="option-title">Crescer na carreira</div>
-                        <div class="option-desc">Dominar IA para me destacar</div>
+                        <div class="option-title">Preciso convencer meu time</div>
+                        <div class="option-desc">Mostrar valor, conseguir buy-in</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -593,9 +617,8 @@
 
         <div class="benefit-box">
             <div class="benefit-title">✨ O que muda pra você:</div>
-            <div class="benefit-text">
-                Conteúdo selecionado para <strong id="benefit-area">sua área</strong>,
-                com exemplos práticos para <strong id="benefit-goal">seu objetivo</strong>.
+            <div class="benefit-text" id="benefit-text">
+                Conteúdo focado nos desafios de quem quer automatizar tarefas em empresas em crescimento.
             </div>
         </div>
 
@@ -632,14 +655,13 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // State
 let currentStep = 1;
-let answers = { area: null, level: null, goal: null };
+let answers = { role: null, size: null, challenge: null };
 let userEmail = null;
 let userId = null;
 
 // Get email from URL
 const urlParams = new URLSearchParams(window.location.search);
 const emailParam = urlParams.get('email');
-const tokenParam = urlParams.get('token');
 
 // DOM Elements
 const loading = document.getElementById('loading');
@@ -661,7 +683,7 @@ async function init() {
     // Verify user exists and check profile
     try {
         const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/ai_digest_subscribers?email=eq.${encodeURIComponent(userEmail)}&select=id,profile,quiz_area,quiz_level,quiz_goal`,
+            `${SUPABASE_URL}/rest/v1/ai_digest_subscribers?email=eq.${encodeURIComponent(userEmail)}&select=id,job_role,company_size,main_challenge`,
             {
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
@@ -680,8 +702,8 @@ async function init() {
         const user = data[0];
         userId = user.id;
 
-        // Check if already has profile
-        if (user.quiz_area && user.quiz_level && user.quiz_goal) {
+        // Check if already has profile (new fields)
+        if (user.job_role && user.company_size && user.main_challenge) {
             showAlreadyComplete();
             return;
         }
@@ -741,14 +763,14 @@ document.querySelectorAll('.options').forEach(optionsContainer => {
         const value = option.dataset.value;
         const stepId = optionsContainer.id;
 
-        if (stepId === 'options-area') {
-            answers.area = value;
+        if (stepId === 'options-role') {
+            answers.role = value;
             document.getElementById('next-1').disabled = false;
-        } else if (stepId === 'options-level') {
-            answers.level = value;
+        } else if (stepId === 'options-size') {
+            answers.size = value;
             document.getElementById('next-2').disabled = false;
-        } else if (stepId === 'options-goal') {
-            answers.goal = value;
+        } else if (stepId === 'options-challenge') {
+            answers.challenge = value;
             document.getElementById('submit').disabled = false;
         }
     });
@@ -768,19 +790,20 @@ document.getElementById('submit').addEventListener('click', async () => {
     errorDiv.classList.remove('active');
 
     try {
-        // Determine profile and content_type
-        let profile = 'non-tech';
+        // Determine profile and content_type based on answers
+        let profile = 'business';
         let content_type = 'essencial';
 
-        if (answers.area === 'tech') {
+        // Dev/técnico com desafio de criar produtos = Pro
+        if (answers.role === 'dev' && answers.challenge === 'build_products') {
             profile = 'tech';
-            if (answers.level === 'advanced' || answers.goal === 'build') {
-                content_type = 'tecnico';
-            }
-        } else if (answers.area === 'creative') {
-            profile = 'creative';
-        } else if (answers.area === 'business') {
-            profile = 'business';
+            content_type = 'tecnico';
+        } else if (answers.role === 'dev') {
+            profile = 'tech';
+        } else if (answers.role === 'founder' || answers.role === 'manager') {
+            profile = 'leadership';
+        } else if (answers.role === 'freelancer') {
+            profile = 'freelancer';
         }
 
         // Update subscriber
@@ -795,11 +818,11 @@ document.getElementById('submit').addEventListener('click', async () => {
                     'Prefer': 'return=minimal'
                 },
                 body: JSON.stringify({
+                    job_role: answers.role,
+                    company_size: answers.size,
+                    main_challenge: answers.challenge,
                     profile: profile,
                     content_type: content_type,
-                    quiz_area: answers.area,
-                    quiz_level: answers.level,
-                    quiz_goal: answers.goal,
                     updated_at: new Date().toISOString()
                 })
             }
@@ -812,9 +835,10 @@ document.getElementById('submit').addEventListener('click', async () => {
         // Track event
         if (typeof fbq !== 'undefined') {
             fbq('track', 'CompleteRegistration', {
-                content_name: 'profile_enrichment',
-                profile: profile,
-                content_type: content_type
+                content_name: 'profile_enrichment_v2',
+                job_role: answers.role,
+                company_size: answers.size,
+                main_challenge: answers.challenge
             });
         }
 
@@ -834,22 +858,23 @@ function showSuccess() {
     quizContent.style.display = 'none';
     successDiv.classList.add('active');
 
-    // Update benefit text
-    const areaLabels = {
-        tech: 'tecnologia',
-        business: 'negócios',
-        creative: 'criatividade',
-        other: 'sua área'
+    // Update benefit text based on answers
+    const challengeLabels = {
+        getting_started: 'está começando com IA',
+        automate: 'quer automatizar tarefas',
+        build_products: 'quer criar produtos com IA',
+        convince_team: 'precisa convencer o time'
     };
-    const goalLabels = {
-        productivity: 'produtividade',
-        uptodate: 'se manter atualizado',
-        build: 'criar com IA',
-        career: 'crescer na carreira'
+    const sizeLabels = {
+        solo: 'trabalha solo',
+        small: 'times pequenos',
+        medium: 'empresas em crescimento',
+        large: 'empresas estabelecidas',
+        enterprise: 'grandes corporações'
     };
 
-    document.getElementById('benefit-area').textContent = areaLabels[answers.area] || 'sua área';
-    document.getElementById('benefit-goal').textContent = goalLabels[answers.goal] || 'seus objetivos';
+    const benefitText = document.getElementById('benefit-text');
+    benefitText.textContent = `Conteúdo focado pra quem ${challengeLabels[answers.challenge] || 'quer evoluir'} em ${sizeLabels[answers.size] || 'qualquer contexto'}.`;
 }
 
 // Start
