@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize seu AI Digest</title>
+    <meta name="description" content="Responda 3 perguntas rápidas e receba conteúdo personalizado para você.">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3409203449195903');
+    fbq('track', 'PageView');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #3730a3;
+            --primary-hover: #4f46e5;
+            --primary-light: #e0e7ff;
+            --primary-dark: #312e81;
+            --bg: #f8fafc;
+            --bg-card: #FFFFFF;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --success: #059669;
+            --success-bg: #d1fae5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-icon-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .container {
+            background: var(--bg-card);
+            border-radius: 20px;
+            max-width: 540px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+
+        .progress-step.active {
+            background: var(--primary);
+        }
+
+        .progress-step.completed {
+            background: var(--success);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .step-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .step-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: var(--bg);
+            border: 2px solid var(--border-light);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .option-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-icon {
+            background: var(--primary);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .option-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .option-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .option.selected .option-check {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .option.selected .option-check::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-light);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(55, 48, 163, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success State */
+        .success-container {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-container.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .benefit-box {
+            background: var(--primary-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .benefit-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .benefit-text {
+            font-size: 13px;
+            color: var(--primary);
+        }
+
+        /* Error State */
+        .error-message {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        /* Already Complete */
+        .already-complete {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .already-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 28px 20px;
+            }
+
+            .step-title {
+                font-size: 20px;
+            }
+
+            .option {
+                padding: 14px 16px;
+            }
+
+            .option-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="brand">
+    <div class="brand-icon">
+        <div class="brand-icon-dot"></div>
+    </div>
+    <span class="brand-name">AI Digest</span>
+</div>
+
+<div class="container">
+    <!-- Loading State -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p style="color: var(--text-secondary);">Carregando...</p>
+    </div>
+
+    <!-- Quiz Content -->
+    <div id="quiz-content" style="display: none;">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step" id="prog-1"></div>
+            <div class="progress-step" id="prog-2"></div>
+            <div class="progress-step" id="prog-3"></div>
+        </div>
+
+        <!-- Step 1: Área -->
+        <div class="step" id="step-1">
+            <div class="step-header">
+                <div class="step-number">Pergunta 1 de 3</div>
+                <h2 class="step-title">Qual é a sua área?</h2>
+                <p class="step-subtitle">Isso nos ajuda a escolher os melhores exemplos pra você</p>
+            </div>
+
+            <div class="options" id="options-area">
+                <div class="option" data-value="tech">
+                    <div class="option-icon">💻</div>
+                    <div class="option-content">
+                        <div class="option-title">Tecnologia / Dev</div>
+                        <div class="option-desc">Programação, dados, produto</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="business">
+                    <div class="option-icon">📊</div>
+                    <div class="option-content">
+                        <div class="option-title">Negócios / Gestão</div>
+                        <div class="option-desc">Marketing, vendas, operações</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="creative">
+                    <div class="option-icon">🎨</div>
+                    <div class="option-content">
+                        <div class="option-title">Criativo / Design</div>
+                        <div class="option-desc">Design, conteúdo, mídia</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="other">
+                    <div class="option-icon">🌟</div>
+                    <div class="option-content">
+                        <div class="option-title">Outra área</div>
+                        <div class="option-desc">Saúde, educação, jurídico, etc</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-primary" id="next-1" disabled>Próxima →</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Nível -->
+        <div class="step" id="step-2">
+            <div class="step-header">
+                <div class="step-number">Pergunta 2 de 3</div>
+                <h2 class="step-title">Seu nível com IA?</h2>
+                <p class="step-subtitle">Para calibrar a profundidade do conteúdo</p>
+            </div>
+
+            <div class="options" id="options-level">
+                <div class="option" data-value="beginner">
+                    <div class="option-icon">🌱</div>
+                    <div class="option-content">
+                        <div class="option-title">Iniciante</div>
+                        <div class="option-desc">Ainda explorando, uso ChatGPT às vezes</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="intermediate">
+                    <div class="option-icon">🚀</div>
+                    <div class="option-content">
+                        <div class="option-title">Intermediário</div>
+                        <div class="option-desc">Uso no dia a dia, quero otimizar</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="advanced">
+                    <div class="option-icon">⚡</div>
+                    <div class="option-content">
+                        <div class="option-title">Avançado</div>
+                        <div class="option-desc">Crio automações, uso APIs, desenvolvo</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="back-2">← Voltar</button>
+                <button class="btn btn-primary" id="next-2" disabled>Próxima →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Objetivo -->
+        <div class="step" id="step-3">
+            <div class="step-header">
+                <div class="step-number">Pergunta 3 de 3</div>
+                <h2 class="step-title">O que você quer alcançar?</h2>
+                <p class="step-subtitle">Para focar no que mais importa pra você</p>
+            </div>
+
+            <div class="options" id="options-goal">
+                <div class="option" data-value="productivity">
+                    <div class="option-icon">⏱️</div>
+                    <div class="option-content">
+                        <div class="option-title">Ser mais produtivo</div>
+                        <div class="option-desc">Automatizar tarefas, economizar tempo</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="uptodate">
+                    <div class="option-icon">📰</div>
+                    <div class="option-content">
+                        <div class="option-title">Me manter atualizado</div>
+                        <div class="option-desc">Saber o que está acontecendo em IA</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="build">
+                    <div class="option-icon">🔧</div>
+                    <div class="option-content">
+                        <div class="option-title">Criar com IA</div>
+                        <div class="option-desc">Desenvolver projetos, produtos, apps</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" data-value="career">
+                    <div class="option-icon">📈</div>
+                    <div class="option-content">
+                        <div class="option-title">Crescer na carreira</div>
+                        <div class="option-desc">Dominar IA para me destacar</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="back-3">← Voltar</button>
+                <button class="btn btn-primary" id="submit" disabled>Salvar preferências</button>
+            </div>
+        </div>
+
+        <div class="error-message" id="error"></div>
+    </div>
+
+    <!-- Success State -->
+    <div class="success-container" id="success">
+        <div class="success-icon">🎉</div>
+        <h2 class="success-title">Perfil atualizado!</h2>
+        <p class="success-message">
+            A partir de amanhã, seu AI Digest será ainda mais relevante pra você.
+        </p>
+
+        <div class="benefit-box">
+            <div class="benefit-title">✨ O que muda pra você:</div>
+            <div class="benefit-text">
+                Conteúdo selecionado para <strong id="benefit-area">sua área</strong>,
+                com exemplos práticos para <strong id="benefit-goal">seu objetivo</strong>.
+            </div>
+        </div>
+
+        <p style="font-size: 14px; color: var(--text-muted);">
+            Pode fechar essa página. Nos vemos amanhã às 8h! 📬
+        </p>
+    </div>
+
+    <!-- Already Complete State -->
+    <div class="already-complete" id="already-complete" style="display: none;">
+        <div class="already-icon">✅</div>
+        <h2 class="step-title">Você já completou!</h2>
+        <p class="step-subtitle" style="margin-top: 12px;">
+            Seu perfil já está configurado. Obrigado por nos ajudar a personalizar seu AI Digest!
+        </p>
+    </div>
+
+    <!-- Invalid Link State -->
+    <div class="already-complete" id="invalid-link" style="display: none;">
+        <div class="already-icon">🔗</div>
+        <h2 class="step-title">Link inválido</h2>
+        <p class="step-subtitle" style="margin-top: 12px;">
+            Este link de personalização não é válido ou expirou.
+        </p>
+        <a href="/" class="btn btn-primary" style="display: inline-block; margin-top: 20px; text-decoration: none;">
+            Ir para a página inicial
+        </a>
+    </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://yvhtpboejndktqoxbnbn.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU4NjEyODcsImV4cCI6MjA1MTQzNzI4N30.DREP9BwLLVTDVjXasUXKMPudPJhpF2X2JjQoLJdXH5U';
+
+// State
+let currentStep = 1;
+let answers = { area: null, level: null, goal: null };
+let userEmail = null;
+let userId = null;
+
+// Get email from URL
+const urlParams = new URLSearchParams(window.location.search);
+const emailParam = urlParams.get('email');
+const tokenParam = urlParams.get('token');
+
+// DOM Elements
+const loading = document.getElementById('loading');
+const quizContent = document.getElementById('quiz-content');
+const successDiv = document.getElementById('success');
+const alreadyComplete = document.getElementById('already-complete');
+const invalidLink = document.getElementById('invalid-link');
+const errorDiv = document.getElementById('error');
+
+// Initialize
+async function init() {
+    if (!emailParam) {
+        showInvalidLink();
+        return;
+    }
+
+    userEmail = decodeURIComponent(emailParam);
+
+    // Verify user exists and check profile
+    try {
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/ai_digest_subscribers?email=eq.${encodeURIComponent(userEmail)}&select=id,profile,quiz_area,quiz_level,quiz_goal`,
+            {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+            showInvalidLink();
+            return;
+        }
+
+        const user = data[0];
+        userId = user.id;
+
+        // Check if already has profile
+        if (user.quiz_area && user.quiz_level && user.quiz_goal) {
+            showAlreadyComplete();
+            return;
+        }
+
+        // Show quiz
+        showQuiz();
+
+    } catch (error) {
+        console.error('Error:', error);
+        showInvalidLink();
+    }
+}
+
+function showInvalidLink() {
+    loading.style.display = 'none';
+    invalidLink.style.display = 'block';
+}
+
+function showAlreadyComplete() {
+    loading.style.display = 'none';
+    alreadyComplete.style.display = 'block';
+}
+
+function showQuiz() {
+    loading.style.display = 'none';
+    quizContent.style.display = 'block';
+    updateProgress();
+    showStep(1);
+}
+
+function showStep(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(`step-${step}`).classList.add('active');
+    currentStep = step;
+    updateProgress();
+}
+
+function updateProgress() {
+    for (let i = 1; i <= 3; i++) {
+        const prog = document.getElementById(`prog-${i}`);
+        prog.classList.remove('active', 'completed');
+        if (i < currentStep) prog.classList.add('completed');
+        if (i === currentStep) prog.classList.add('active');
+    }
+}
+
+// Option selection
+document.querySelectorAll('.options').forEach(optionsContainer => {
+    optionsContainer.addEventListener('click', (e) => {
+        const option = e.target.closest('.option');
+        if (!option) return;
+
+        // Deselect others in same container
+        optionsContainer.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+
+        const value = option.dataset.value;
+        const stepId = optionsContainer.id;
+
+        if (stepId === 'options-area') {
+            answers.area = value;
+            document.getElementById('next-1').disabled = false;
+        } else if (stepId === 'options-level') {
+            answers.level = value;
+            document.getElementById('next-2').disabled = false;
+        } else if (stepId === 'options-goal') {
+            answers.goal = value;
+            document.getElementById('submit').disabled = false;
+        }
+    });
+});
+
+// Navigation
+document.getElementById('next-1').addEventListener('click', () => showStep(2));
+document.getElementById('back-2').addEventListener('click', () => showStep(1));
+document.getElementById('next-2').addEventListener('click', () => showStep(3));
+document.getElementById('back-3').addEventListener('click', () => showStep(2));
+
+// Submit
+document.getElementById('submit').addEventListener('click', async () => {
+    const submitBtn = document.getElementById('submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Salvando...';
+    errorDiv.classList.remove('active');
+
+    try {
+        // Determine profile and content_type
+        let profile = 'non-tech';
+        let content_type = 'essencial';
+
+        if (answers.area === 'tech') {
+            profile = 'tech';
+            if (answers.level === 'advanced' || answers.goal === 'build') {
+                content_type = 'tecnico';
+            }
+        } else if (answers.area === 'creative') {
+            profile = 'creative';
+        } else if (answers.area === 'business') {
+            profile = 'business';
+        }
+
+        // Update subscriber
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/ai_digest_subscribers?id=eq.${userId}`,
+            {
+                method: 'PATCH',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    profile: profile,
+                    content_type: content_type,
+                    quiz_area: answers.area,
+                    quiz_level: answers.level,
+                    quiz_goal: answers.goal,
+                    updated_at: new Date().toISOString()
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error('Failed to update');
+        }
+
+        // Track event
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'CompleteRegistration', {
+                content_name: 'profile_enrichment',
+                profile: profile,
+                content_type: content_type
+            });
+        }
+
+        // Show success
+        showSuccess();
+
+    } catch (error) {
+        console.error('Error:', error);
+        errorDiv.textContent = 'Erro ao salvar. Tente novamente.';
+        errorDiv.classList.add('active');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Salvar preferências';
+    }
+});
+
+function showSuccess() {
+    quizContent.style.display = 'none';
+    successDiv.classList.add('active');
+
+    // Update benefit text
+    const areaLabels = {
+        tech: 'tecnologia',
+        business: 'negócios',
+        creative: 'criatividade',
+        other: 'sua área'
+    };
+    const goalLabels = {
+        productivity: 'produtividade',
+        uptodate: 'se manter atualizado',
+        build: 'criar com IA',
+        career: 'crescer na carreira'
+    };
+
+    document.getElementById('benefit-area').textContent = areaLabels[answers.area] || 'sua área';
+    document.getElementById('benefit-goal').textContent = goalLabels[answers.goal] || 'seus objetivos';
+}
+
+// Start
+init();
+</script>
+
+</body>
+</html>
