@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digest — IA sem enrolação</title>
+    <meta name="description" content="3 minutos por dia pra entender IA. Sem jargão, sem hype. Todo dia às 8h.">
+
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3409203449195903');
+    fbq('track', 'PageView');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --accent: #10b981;
+            --accent-light: #d1fae5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== QUIZ ==================== */
+        .quiz-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            background: var(--white);
+        }
+
+        .quiz-page.hidden { display: none; }
+
+        .brand {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.03em;
+        }
+
+        .quiz-box {
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 48px;
+        }
+
+        .quiz-progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .quiz-progress-dot.active { background: var(--black); transform: scale(1.25); }
+        .quiz-progress-dot.done { background: var(--accent); }
+
+        .quiz-step {
+            display: none;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .quiz-step.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--black);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 20px 24px;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--black);
+            transform: translateX(4px);
+        }
+
+        .quiz-option-emoji {
+            font-size: 28px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-100);
+            border-radius: 12px;
+        }
+
+        .quiz-option-text {
+            flex: 1;
+        }
+
+        .quiz-option-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--black);
+        }
+
+        .quiz-option-desc {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+
+        /* Result */
+        .quiz-result {
+            text-align: center;
+        }
+
+        .result-emoji {
+            font-size: 64px;
+            margin-bottom: 24px;
+            animation: bounce 0.6s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .result-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .result-desc {
+            font-size: 18px;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .result-card {
+            background: var(--gray-50);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .result-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .result-card-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .result-card-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 6px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .result-card-desc {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .result-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .result-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--black);
+        }
+
+        .result-feature-check {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* Form */
+        .quiz-form {
+            margin-bottom: 32px;
+        }
+
+        .quiz-form input {
+            width: 100%;
+            padding: 18px 20px;
+            font-size: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            background: var(--white);
+            margin-bottom: 12px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .quiz-form input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .quiz-form input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .quiz-form button {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .quiz-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .quiz-form-footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 16px;
+        }
+
+        .quiz-form-footer a {
+            color: var(--gray-600);
+        }
+
+        /* Preview */
+        .preview-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .preview-box {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: var(--black);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .preview-date {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .preview-content {
+            padding: 20px;
+        }
+
+        .preview-section {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .preview-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .preview-tag {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .preview-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .preview-text {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .quiz-skip {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .quiz-skip:hover {
+            color: var(--gray-600);
+        }
+
+        /* ==================== MAIN PAGE ==================== */
+        .main-page {
+            display: none;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gray-100);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 10vw, 80px);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            color: var(--black);
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--gray-400);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--gray-600);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        .hero-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .hero-form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .hero-form input[type="email"] {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-family: inherit;
+        }
+
+        .hero-form input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .hero-form button {
+            padding: 16px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .hero-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-meta {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        /* Social proof */
+        .social-proof {
+            padding: 60px 24px;
+            text-align: center;
+            background: var(--gray-50);
+        }
+
+        .social-proof-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.03em;
+        }
+
+        .social-proof-label {
+            font-size: 16px;
+            color: var(--gray-500);
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 24px;
+        }
+
+        .features-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -0.02em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+        }
+
+        .feature-emoji {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 24px;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            color: var(--gray-400);
+            margin-bottom: 40px;
+        }
+
+        .cta-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            width: 100%;
+            padding: 18px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+
+        .cta-form button {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .cta-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(16,185,129,0.3);
+        }
+
+        .cta-footer {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 16px;
+        }
+
+        .cta-footer a {
+            color: var(--gray-400);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-500);
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* Success */
+        .success-msg {
+            display: none;
+            background: var(--accent-light);
+            color: #065f46;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-top: 16px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .quiz-question {
+                font-size: 28px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-form-row {
+                flex-direction: column;
+            }
+
+            .hero-form button {
+                width: 100%;
+            }
+
+            .features-title {
+                font-size: 32px;
+            }
+
+            .cta-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== QUIZ ==================== -->
+    <div class="quiz-page" id="quiz-page">
+        <div class="brand">
+            <div class="brand-name">Digest</div>
+        </div>
+
+        <div class="quiz-box">
+            <div class="quiz-progress">
+                <div class="quiz-progress-dot active" id="dot-1"></div>
+                <div class="quiz-progress-dot" id="dot-2"></div>
+                <div class="quiz-progress-dot" id="dot-3"></div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="quiz-step active" id="step-1">
+                <h1 class="quiz-question">O que você faz?</h1>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-step="1" data-value="tech">
+                        <div class="quiz-option-emoji">💻</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Tecnologia</div>
+                            <div class="quiz-option-desc">Dev, Data, Produto</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="business">
+                        <div class="quiz-option-emoji">📊</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Negócios</div>
+                            <div class="quiz-option-desc">Vendas, Marketing, Gestão</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="creative">
+                        <div class="quiz-option-emoji">🎨</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Criativo</div>
+                            <div class="quiz-option-desc">Design, Conteúdo, Social</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="1" data-value="other">
+                        <div class="quiz-option-emoji">✨</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Outra coisa</div>
+                            <div class="quiz-option-desc">RH, Jurídico, etc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="quiz-step" id="step-2">
+                <h1 class="quiz-question">Como tá seu nível de IA?</h1>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-step="2" data-value="beginner">
+                        <div class="quiz-option-emoji">🌱</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Tô começando</div>
+                            <div class="quiz-option-desc">Uso ChatGPT às vezes</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="2" data-value="intermediate">
+                        <div class="quiz-option-emoji">🚀</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Uso todo dia</div>
+                            <div class="quiz-option-desc">Já faz parte do trabalho</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="2" data-value="advanced">
+                        <div class="quiz-option-emoji">⚡</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Avançado</div>
+                            <div class="quiz-option-desc">APIs, automações, o pacote</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="quiz-step" id="step-3">
+                <h1 class="quiz-question">O que você quer?</h1>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-step="3" data-value="productivity">
+                        <div class="quiz-option-emoji">⏱️</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Ser mais produtivo</div>
+                            <div class="quiz-option-desc">Fazer mais em menos tempo</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="3" data-value="uptodate">
+                        <div class="quiz-option-emoji">📰</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Ficar por dentro</div>
+                            <div class="quiz-option-desc">Saber o que tá rolando</div>
+                        </div>
+                    </div>
+                    <div class="quiz-option" data-step="3" data-value="build">
+                        <div class="quiz-option-emoji">🔧</div>
+                        <div class="quiz-option-text">
+                            <div class="quiz-option-title">Construir coisas</div>
+                            <div class="quiz-option-desc">Apps, automações, produtos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div class="quiz-step" id="step-result">
+                <div class="quiz-result">
+                    <div class="result-emoji" id="result-emoji">🎯</div>
+                    <h1 class="result-title" id="result-title">Perfeito pra você</h1>
+                    <p class="result-desc" id="result-desc">
+                        IA prática, sem enrolação. Exatamente o que você precisa.
+                    </p>
+
+                    <div class="result-card">
+                        <div class="result-card-header">
+                            <span class="result-card-name">Digest</span>
+                            <span class="result-card-tag">Grátis</span>
+                        </div>
+                        <p class="result-card-desc" id="result-card-desc">
+                            3 minutos por dia pra entender o que importa em IA. Sem jargão, sem hype.
+                        </p>
+                        <div class="result-features" id="result-features">
+                            <div class="result-feature">
+                                <span class="result-feature-check">✓</span>
+                                <span>Notícias filtradas</span>
+                            </div>
+                            <div class="result-feature">
+                                <span class="result-feature-check">✓</span>
+                                <span>Ferramentas pra testar</span>
+                            </div>
+                            <div class="result-feature">
+                                <span class="result-feature-check">✓</span>
+                                <span>Dicas práticas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-form">
+                        <input type="email" id="quiz-email" placeholder="seu@email.com" required>
+                        <button type="button" id="quiz-submit">Quero receber →</button>
+                        <p class="quiz-form-footer">
+                            Todo dia às 8h. Sem spam.<br>
+                            <a href="termos.html">Termos</a> · <a href="privacidade.html">Privacidade</a>
+                        </p>
+                    </div>
+
+                    <p class="preview-label">Última edição</p>
+                    <div class="preview-box">
+                        <div class="preview-header">
+                            <span class="preview-logo">Digest</span>
+                            <span class="preview-date">13 Jan</span>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-section">
+                                <div class="preview-tag">Destaque</div>
+                                <div class="preview-title">Gmail vai virar seu assistente pessoal</div>
+                                <div class="preview-text">Google anunciou a maior atualização do Gmail em 20 anos...</div>
+                            </div>
+                            <div class="preview-section">
+                                <div class="preview-tag">Dica rápida</div>
+                                <div class="preview-text"><strong>Peça pra IA ser do contra.</strong> Antes de decidir, peça 5 razões pra sua ideia dar errado.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="quiz-skip" id="quiz-skip">pular quiz</p>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN PAGE ==================== -->
+    <div class="main-page" id="main-page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Todo dia às 8h
+                </div>
+
+                <h1 class="hero-title">
+                    IA sem
+                    <span>enrolação.</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    3 minutos por dia pra entender o que importa.<br>
+                    Sem jargão. Sem hype. Sem complicação.
+                </p>
+
+                <form class="hero-form" id="hero-form">
+                    <div class="hero-form-row">
+                        <input type="email" id="hero-email" placeholder="seu@email.com" required>
+                        <button type="submit">Quero →</button>
+                    </div>
+                    <p class="hero-meta">94 pessoas já recebem. É grátis.</p>
+                </form>
+
+                <div class="success-msg" id="hero-success">
+                    Beleza! Amanhã às 8h você recebe ✌️
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="features-title">O que você recebe</h2>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-emoji">📰</div>
+                        <h3 class="feature-title">Notícias filtradas</h3>
+                        <p class="feature-desc">O que importa em IA. Sem você ter que garimpar.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-emoji">💡</div>
+                        <h3 class="feature-title">Casos reais</h3>
+                        <p class="feature-desc">Como gente normal tá usando IA no trabalho.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-emoji">🛠️</div>
+                        <h3 class="feature-title">Ferramentas</h3>
+                        <p class="feature-desc">Apps que você pode testar agora mesmo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-emoji">⚡</div>
+                        <h3 class="feature-title">3 minutos</h3>
+                        <p class="feature-desc">Lê no café. Direto ao ponto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Bora?</h2>
+                <p class="cta-subtitle">Todo dia às 8h. É grátis.</p>
+
+                <form class="cta-form" id="cta-form">
+                    <input type="email" id="cta-email" placeholder="seu@email.com" required>
+                    <button type="submit">Quero receber →</button>
+                    <p class="cta-footer">
+                        <a href="termos.html">Termos</a> · <a href="privacidade.html">Privacidade</a>
+                    </p>
+                </form>
+
+                <div class="success-msg" id="cta-success" style="color: #065f46;">
+                    Beleza! Amanhã às 8h você recebe ✌️
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Digest © 2026
+        </footer>
+    </div>
+
+    <script>
+        const state = { step: 1, answers: {} };
+
+        const profiles = {
+            builder: { emoji: '🔧', title: 'Feito pra quem constrói', desc: 'Você curte criar coisas. A gente manda o que importa pra quem desenvolve.' },
+            optimizer: { emoji: '🎯', title: 'Perfeito pra você', desc: 'IA prática, sem enrolação. Exatamente o que você precisa.' },
+            explorer: { emoji: '🌱', title: 'Bom pra começar', desc: 'Sem termos complicados. Só o que você precisa saber.' },
+            creator: { emoji: '🎨', title: 'IA pra criativos', desc: 'Ferramentas e dicas pra potencializar seu trabalho criativo.' }
+        };
+
+        function getProfile() {
+            const { area, level, goal } = state.answers;
+            if (area === 'tech' && level === 'advanced') return profiles.builder;
+            if (area === 'creative') return profiles.creator;
+            if (level === 'beginner') return profiles.explorer;
+            return profiles.optimizer;
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(n === 'result' ? 'step-result' : `step-${n}`).classList.add('active');
+
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                dot.classList.remove('active', 'done');
+                if (n === 'result') dot.classList.add('done');
+                else if (i < n) dot.classList.add('done');
+                else if (i === n) dot.classList.add('active');
+            }
+
+            document.getElementById('quiz-skip').style.display = n === 'result' ? 'none' : 'block';
+        }
+
+        function showResult() {
+            const p = getProfile();
+            document.getElementById('result-emoji').textContent = p.emoji;
+            document.getElementById('result-title').textContent = p.title;
+            document.getElementById('result-desc').textContent = p.desc;
+            showStep('result');
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-page').classList.add('hidden');
+            document.getElementById('main-page').style.display = 'block';
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                const step = +this.dataset.step;
+                const val = this.dataset.value;
+                if (step === 1) state.answers.area = val;
+                if (step === 2) state.answers.level = val;
+                if (step === 3) state.answers.goal = val;
+                setTimeout(() => step < 3 ? (state.step = step + 1, showStep(state.step)) : showResult(), 150);
+            });
+        });
+
+        document.getElementById('quiz-skip').addEventListener('click', closeQuiz);
+
+        async function subscribe(email, source, btn, successEl) {
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/ai_digest_subscribers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ email, source, content_type: 'essencial' })
+                });
+
+                if (res.ok || res.status === 409) {
+                    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+                    btn.textContent = 'Inscrito ✓';
+                    btn.style.background = '#10b981';
+                    if (successEl) successEl.style.display = 'block';
+                    if (source.includes('quiz')) setTimeout(closeQuiz, 1500);
+                } else throw new Error();
+            } catch (e) {
+                btn.textContent = 'Erro - tenta de novo';
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById('quiz-submit').addEventListener('click', function() {
+            const email = document.getElementById('quiz-email').value;
+            if (!email.includes('@')) return document.getElementById('quiz-email').focus();
+            subscribe(email, 'quiz_v4', this);
+        });
+
+        document.getElementById('hero-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            subscribe(document.getElementById('hero-email').value, 'landing_v4', this.querySelector('button'), document.getElementById('hero-success'));
+        });
+
+        document.getElementById('cta-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            subscribe(document.getElementById('cta-email').value, 'landing_v4_cta', this.querySelector('button'), document.getElementById('cta-success'));
+        });
+    </script>
+</body>
+</html>

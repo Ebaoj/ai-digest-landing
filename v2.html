@@ -766,6 +766,34 @@
         const SUPABASE_URL = 'https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/ai_digest_subscribers';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibmJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMzYyMDMsImV4cCI6MjA3ODgxMjIwM30.M6PxISn2BjdJRRcsJoRQBVcVL4kjTGuQN53c98BbqSc';
 
+        // ==================== UTM TRACKING ====================
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Capture UTM parameters
+        const utmParams = {
+            utm_source: urlParams.get('utm_source'),
+            utm_medium: urlParams.get('utm_medium'),
+            utm_campaign: urlParams.get('utm_campaign'),
+            utm_content: urlParams.get('utm_content'),
+            utm_term: urlParams.get('utm_term')
+        };
+
+        // Store UTMs in sessionStorage (persists during navigation)
+        if (utmParams.utm_source) {
+            sessionStorage.setItem('utm_params', JSON.stringify(utmParams));
+            console.log('UTM params detected:', utmParams);
+        }
+
+        // Get stored UTMs (in case user navigates away and comes back)
+        const storedUtmParams = JSON.parse(sessionStorage.getItem('utm_params') || '{}');
+        const finalUtmParams = {
+            utm_source: utmParams.utm_source || storedUtmParams.utm_source || null,
+            utm_medium: utmParams.utm_medium || storedUtmParams.utm_medium || null,
+            utm_campaign: utmParams.utm_campaign || storedUtmParams.utm_campaign || null,
+            utm_content: utmParams.utm_content || storedUtmParams.utm_content || null,
+            utm_term: utmParams.utm_term || storedUtmParams.utm_term || null
+        };
+
         async function submitForm(email, name, company, formId, successId) {
             const button = document.querySelector(`#${formId} button`);
             const originalText = button.textContent;
@@ -786,7 +814,13 @@
                         company: company || null,
                         source: 'landing_v2',
                         profile: 'unknown',
-                        content_type: 'essencial'
+                        content_type: 'essencial',
+                        // UTM tracking
+                        utm_source: finalUtmParams.utm_source,
+                        utm_medium: finalUtmParams.utm_medium,
+                        utm_campaign: finalUtmParams.utm_campaign,
+                        utm_content: finalUtmParams.utm_content,
+                        utm_term: finalUtmParams.utm_term
                     })
                 });
 
