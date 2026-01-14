@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Digest - IA prática para o seu dia a dia</title>
+    <title>Digest - IA prática para o seu dia a dia</title>
     <meta name="description" content="As novidades de IA que vão impactar seu trabalho, explicadas de forma direta. Todo dia às 7h. Grátis.">
 
     <!-- Meta Pixel Code -->
@@ -29,19 +29,31 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
+            /* Digest Brand Guide v22 - Dark Mode */
             --bg-dark: #0a0a0a;
             --bg-card: #141414;
             --bg-card-hover: #1a1a1a;
-            /* AI Digest Brand - Índigo */
-            --accent: #3730a3;
-            --accent-hover: #4f46e5;
-            --accent-light: #6366f1;
-            --accent-glow: rgba(55, 48, 163, 0.4);
+            --black: #1a1a1a;
+            --white: #ffffff;
+
+            /* Accent - Vermelho tijolo */
+            --accent: #DC2626;
+            --accent-hover: #B91C1C;
+            --accent-light: #EF4444;
+            --accent-glow: rgba(220, 38, 38, 0.4);
+
+            /* Texto */
             --text-white: #ffffff;
             --text-gray: #a3a3a3;
             --text-muted: #525252;
+
+            /* Borders */
             --border: #262626;
-            --success: #22c55e;
+            --border-light: #333333;
+
+            /* Estados */
+            --success: #065F46;
+            --success-bg: #D1FAE5;
         }
 
         body {
@@ -52,21 +64,14 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Top Bar */
+        /* Top Bar */
         .top-bar {
-            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
-            background-size: 200% 100%;
-            animation: gradient-shift 3s ease infinite;
+            background: var(--accent);
             padding: 10px 20px;
             text-align: center;
             font-size: 13px;
             font-weight: 600;
             color: white;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .top-bar span {
@@ -149,10 +154,7 @@
         }
 
         h1 .highlight {
-            background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
         }
 
         .hero-subtitle {
@@ -426,8 +428,17 @@
         }
 
         .newsletter-logo {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .newsletter-logo .monolith {
+            width: 3px;
+            height: 16px;
+            background: var(--text-white);
         }
 
         .newsletter-date {
@@ -717,7 +728,7 @@
 
                 <div class="newsletter-card">
                     <div class="newsletter-header">
-                        <span class="newsletter-logo">AI Digest</span>
+                        <span class="newsletter-logo"><span class="monolith"></span>digest</span>
                         <span class="newsletter-date">09 Jan 2026</span>
                     </div>
                     <div class="newsletter-body">
@@ -759,7 +770,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>AI Digest &copy; 2026 · <a href="termos.html">Termos</a> · <a href="privacidade.html">Privacidade</a></p>
+        <p>Digest &copy; 2026 · <a href="termos.html">Termos</a> · <a href="privacidade.html">Privacidade</a></p>
     </footer>
 
     <script>

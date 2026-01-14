@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Digest - IA prática para o seu dia a dia</title>
+    <title>Digest - IA prática para o seu dia a dia</title>
     <meta name="description" content="As novidades de IA que vão impactar seu trabalho, explicadas de forma direta. Todo dia às 7h. Grátis.">
 
     <!-- Meta Pixel Code -->
@@ -29,23 +29,44 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* AI Digest Brand Guide v1.0 - Índigo */
-            --primary: #3730a3;
-            --primary-hover: #4f46e5;
-            --primary-light: #e0e7ff;
-            --primary-dark: #312e81;
-            --bg: #f8fafc;
-            --bg-card: #FFFFFF;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --border: #e2e8f0;
-            --border-light: #f1f5f9;
-            --success: #059669;
-            --success-bg: #d1fae5;
-            --warning: #f59e0b;
-            --error: #dc2626;
-            --info: #0891b2;
+            /* Digest Brand Guide v22 */
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --bg: #FDFCFB;
+            --bg-card: #ffffff;
+            --accent: #DC2626;
+            --accent-hover: #B91C1C;
+
+            /* Texto */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4A4A4A;
+            --text-muted: #6B6B6B;
+            --text-light: #A3A3A3;
+
+            /* Borders */
+            --border: #E5E5E5;
+            --border-light: #F0F0F0;
+
+            /* Pills */
+            --pill-red-bg: #FEE2E2;
+            --pill-red-text: #991B1B;
+            --pill-indigo-bg: #E0E7FF;
+            --pill-indigo-text: #3730A3;
+            --pill-green-bg: #D1FAE5;
+            --pill-green-text: #065F46;
+            --pill-yellow-bg: #FEF9C3;
+            --pill-yellow-border: #CA8A04;
+
+            /* Estados */
+            --success: #065F46;
+            --success-bg: #D1FAE5;
+            --warning: #CA8A04;
+            --error: #DC2626;
+
+            /* Legacy aliases */
+            --primary: #1a1a1a;
+            --primary-hover: #000000;
+            --primary-light: #F0F0F0;
         }
 
         body {
@@ -79,7 +100,7 @@
             margin: 0 auto;
         }
 
-        /* Logo/Brand */
+        /* Logo/Brand - Digest v22 */
         .brand {
             text-align: center;
             margin-bottom: 48px;
@@ -91,28 +112,23 @@
             gap: 10px;
         }
 
-        .brand-icon {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .brand-icon-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
+        .monolith {
+            width: 4px;
+            height: 24px;
+            background: var(--black);
         }
 
         .brand-name {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 600;
             color: var(--text-primary);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
         }
 
         /* Header */
@@ -125,8 +141,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--pill-red-bg);
+            color: var(--pill-red-text);
             padding: 8px 16px;
             border-radius: 100px;
             font-size: 13px;
@@ -135,19 +151,16 @@
         }
 
         h1 {
-            font-size: 2.75rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 20px;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
         h1 .highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent);
         }
 
         .subtitle {
@@ -162,20 +175,18 @@
             display: inline-block;
             margin-top: 32px;
             padding: 16px 32px;
-            background: var(--primary);
-            color: #fff;
+            background: var(--black);
+            color: var(--white);
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(55, 48, 163, 0.3);
+            border-radius: 8px;
             transition: all 0.2s;
         }
 
         .hero-cta:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(55, 48, 163, 0.4);
+            background: var(--accent);
+            transform: translateY(-1px);
         }
 
         /* Social Proof */
@@ -389,13 +400,11 @@
             font-family: inherit;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(55, 48, 163, 0.3);
         }
 
         button:hover {
-            background: var(--primary-hover);
+            background: var(--accent);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(55, 48, 163, 0.4);
         }
 
         button:active {
@@ -459,27 +468,17 @@
             margin-bottom: 40px;
         }
 
-        .quiz-brand-icon {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .quiz-brand-icon-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
+        .quiz-monolith {
+            width: 4px;
+            height: 24px;
+            background: var(--black);
         }
 
         .quiz-brand-name {
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 600;
             color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
         .quiz-container {
@@ -696,7 +695,7 @@
         }
 
         .quiz-result-product-header {
-            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            background: var(--black);
             padding: 20px;
             display: flex;
             align-items: center;
@@ -1160,11 +1159,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(55, 48, 163, 0.3);
         }
 
         .quiz-result-form button:hover {
-            background: var(--primary-hover);
+            background: var(--accent);
             transform: translateY(-1px);
         }
 
@@ -1407,10 +1405,8 @@
     <div class="quiz-page" id="quiz-page">
         <!-- Brand -->
         <div class="quiz-brand">
-            <div class="quiz-brand-icon">
-                <div class="quiz-brand-icon-dot"></div>
-            </div>
-            <span class="quiz-brand-name">AI Digest</span>
+            <div class="quiz-monolith"></div>
+            <span class="quiz-brand-name">digest</span>
         </div>
 
         <div class="quiz-container">
@@ -1538,7 +1534,7 @@
                                 <div class="quiz-result-product-logo-dot"></div>
                             </div>
                             <div class="quiz-result-product-info">
-                                <span class="quiz-result-product-name" id="result-product-name">AI Digest</span>
+                                <span class="quiz-result-product-name" id="result-product-name">Digest</span>
                                 <span class="quiz-result-product-tagline" id="result-product-tagline">IA direto ao ponto</span>
                             </div>
                             <span class="quiz-result-product-tag" id="result-product-tag">GRÁTIS</span>
@@ -1594,7 +1590,7 @@
                         <div class="newsletter-preview" id="newsletter-preview-essencial">
                             <!-- Header -->
                             <div class="newsletter-preview-header">
-                                <div class="newsletter-preview-logo">AI Digest</div>
+                                <div class="newsletter-preview-logo">Digest</div>
                                 <div class="newsletter-preview-date">08 Jan 2026</div>
                             </div>
 
@@ -1638,7 +1634,7 @@
                             <div class="newsletter-preview-section" style="background: var(--bg); text-align: center; padding: 20px;">
                                 <p class="newsletter-preview-text" style="font-size: 12px; color: var(--text-muted);">
                                     Isso é tudo por hoje! Nos vemos amanhã às 7h.<br><br>
-                                    <strong style="color: var(--text-secondary);">AI Digest</strong> · IA direto ao ponto
+                                    <strong style="color: var(--text-secondary);">Digest</strong> · IA direto ao ponto
                                 </p>
                             </div>
                         </div>
@@ -1647,7 +1643,7 @@
                         <div class="newsletter-preview" id="newsletter-preview-pro" style="display: none;">
                             <!-- Header Pro -->
                             <div class="newsletter-preview-header" style="background: #18181b;">
-                                <div class="newsletter-preview-logo">AI Digest Pro</div>
+                                <div class="newsletter-preview-logo">Digest Pro</div>
                                 <div class="newsletter-preview-date">15 Dec 2025</div>
                             </div>
 
@@ -1691,7 +1687,7 @@
                             <div class="newsletter-preview-section" style="background: var(--bg); text-align: center; padding: 20px;">
                                 <p class="newsletter-preview-text" style="font-size: 12px; color: var(--text-muted);">
                                     That's all, folks! See you tomorrow.<br><br>
-                                    <strong style="color: var(--text-secondary);">AI Digest Pro</strong> · Para quem constrói com IA
+                                    <strong style="color: var(--text-secondary);">Digest Pro</strong> · Para quem constrói com IA
                                 </p>
                             </div>
                         </div>
@@ -1709,11 +1705,10 @@
             <div class="container">
                 <div class="brand">
                     <div class="brand-logo">
-                        <div class="brand-icon">
-                            <div class="brand-icon-dot"></div>
-                        </div>
-                        <span class="brand-name">AI Digest</span>
+                        <div class="monolith"></div>
+                        <span class="brand-name">digest</span>
                     </div>
+                    <p class="tagline">Nem toda revolução é evolução.</p>
                 </div>
 
                 <header class="header">
@@ -1809,7 +1804,7 @@
         <section class="preview-section">
             <p class="preview-title">Exemplo de uma edição</p>
             <div class="preview-card">
-                <div class="preview-header">AI Digest - 09/01/2026</div>
+                <div class="preview-header">Digest - 09/01/2026</div>
                 <div class="preview-content">
                     <div class="preview-item">
                         <div class="preview-item-title">🎯 Destaque</div>
@@ -1871,7 +1866,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            AI Digest &copy; 2026 · Feito para quem quer usar IA sem complicação
+            Digest &copy; 2026 · Feito para quem quer usar IA sem complicação
         </footer>
     </div>
 
@@ -1933,7 +1928,7 @@
                 icon: '🔧',
                 title: 'Seu perfil: Builder',
                 subtitle: 'Você constrói com IA e quer ficar por dentro das últimas novidades técnicas.',
-                productName: 'AI Digest Pro',
+                productName: 'Digest Pro',
                 productDesc: 'Conteúdo técnico para quem desenvolve: novos modelos, papers relevantes, APIs, arquiteturas de agentes e automações avançadas.',
                 features: [
                     'Papers e lançamentos de modelos explicados',
@@ -1948,7 +1943,7 @@
                 icon: '⚡',
                 title: 'Seu perfil: Practitioner',
                 subtitle: 'Você já usa IA no trabalho e quer dominar técnicas mais avançadas.',
-                productName: 'AI Digest Pro',
+                productName: 'Digest Pro',
                 productDesc: 'Para quem já programa e quer ir além: prompts avançados, automações complexas e integrações com APIs.',
                 features: [
                     'Técnicas avançadas de prompting',
@@ -1963,7 +1958,7 @@
                 icon: '🚀',
                 title: 'Seu perfil: Optimizer',
                 subtitle: 'Você quer usar IA para trabalhar melhor e mais rápido.',
-                productName: 'AI Digest',
+                productName: 'Digest',
                 productDesc: 'Ferramentas práticas e casos de uso reais para aplicar IA no seu dia a dia. Sem código, sem complicação.',
                 features: [
                     'Ferramentas novas para testar hoje',
@@ -1978,7 +1973,7 @@
                 icon: '🌱',
                 title: 'Seu perfil: Explorer',
                 subtitle: 'Você está descobrindo IA e quer entender o que realmente importa.',
-                productName: 'AI Digest',
+                productName: 'Digest',
                 productDesc: 'As novidades de IA explicadas de forma clara. Foco no que vai impactar seu trabalho, sem termos complicados.',
                 features: [
                     'Novidades explicadas de forma simples',
@@ -1993,7 +1988,7 @@
                 icon: '🎨',
                 title: 'Seu perfil: Creator',
                 subtitle: 'Você trabalha com criação e quer IA como aliada da sua criatividade.',
-                productName: 'AI Digest',
+                productName: 'Digest',
                 productDesc: 'Ferramentas de IA para criação de conteúdo, design, vídeo e produção criativa. Potencie seu trabalho.',
                 features: [
                     'Ferramentas de IA para criativos',
@@ -2092,7 +2087,7 @@
             const previewPro = document.getElementById('newsletter-preview-pro');
 
             if (profile.contentType === 'tecnico') {
-                // AI Digest Pro - estilo preto premium
+                // Digest Pro - estilo preto premium
                 header.style.background = 'linear-gradient(135deg, #18181b 0%, #27272a 100%)';
                 logo.style.background = 'rgba(255,255,255,0.1)';
                 logo.style.borderColor = 'rgba(255,255,255,0.2)';
@@ -2103,12 +2098,12 @@
                 previewEssencial.style.display = 'none';
                 previewPro.style.display = 'block';
             } else {
-                // AI Digest normal - estilo índigo
-                header.style.background = 'linear-gradient(135deg, var(--primary) 0%, #6366f1 100%)';
+                // Digest normal - estilo v22
+                header.style.background = 'var(--black)';
                 logo.style.background = 'rgba(255,255,255,0.2)';
                 logo.style.borderColor = 'rgba(255,255,255,0.3)';
                 tag.style.background = '#fff';
-                tag.style.color = 'var(--primary)';
+                tag.style.color = 'var(--black)';
                 tag.textContent = 'GRÁTIS';
                 // Mostrar preview Essencial
                 previewEssencial.style.display = 'block';
@@ -2323,7 +2318,7 @@
 
                     const successMsg = document.getElementById('success');
                     if (contentType === 'tecnico') {
-                        successMsg.innerHTML = '✅ Anotado! Quando o AI Digest Pro estiver pronto, você será o primeiro a saber. Enquanto isso, vai receber o Essencial.';
+                        successMsg.innerHTML = '✅ Anotado! Quando o Digest Pro estiver pronto, você será o primeiro a saber. Enquanto isso, vai receber o Essencial.';
                     } else {
                         successMsg.innerHTML = '✅ Pronto! Amanhã às 7h você recebe a primeira edição.';
                     }

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carregando... - AI Digest</title>
-    <meta name="description" content="Artigo traduzido do AI Digest - IA prática para o seu dia a dia">
+    <title>Carregando... - Digest</title>
+    <meta name="description" content="Artigo traduzido do Digest - IA prática para o seu dia a dia">
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="AI Digest">
-    <meta property="og:title" content="AI Digest - Artigo">
-    <meta property="og:description" content="Artigo traduzido do AI Digest">
+    <meta property="og:site_name" content="Digest">
+    <meta property="og:title" content="Digest - Artigo">
+    <meta property="og:description" content="Artigo traduzido do Digest">
     <meta property="og:image" content="https://ai-digest-landing.vercel.app/assets/brand/og-image.png">
 
     <!-- Favicons -->
@@ -26,18 +26,27 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* AI Digest Brand - Minimalista estilo Anthropic */
-            --bg: #faf9f7;
-            --bg-card: #FFFFFF;
+            /* Digest Brand Guide v22 */
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --bg: #FDFCFB;
+            --bg-card: #ffffff;
+            --accent: #DC2626;
+            --accent-hover: #B91C1C;
+
+            /* Texto */
             --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #8a8a8a;
-            --border: #e5e5e5;
-            --border-light: #f0f0f0;
-            --primary: #3730a3;
-            --primary-hover: #4f46e5;
-            --primary-light: #e0e7ff;
-            --accent: #6366f1;
+            --text-secondary: #4A4A4A;
+            --text-muted: #6B6B6B;
+
+            /* Borders */
+            --border: #E5E5E5;
+            --border-light: #F0F0F0;
+
+            /* Legacy */
+            --primary: #1a1a1a;
+            --primary-hover: #000000;
+            --primary-light: #F0F0F0;
         }
 
         body {
@@ -74,25 +83,14 @@
             text-decoration: none;
         }
 
-        .brand-icon {
-            width: 28px;
-            height: 28px;
-            border: 2px solid var(--primary);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .brand-icon-dot {
-            width: 5px;
-            height: 5px;
-            background: var(--primary);
-            border-radius: 50%;
+        .monolith {
+            width: 4px;
+            height: 20px;
+            background: var(--black);
         }
 
         .brand-name {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.02em;
@@ -466,10 +464,8 @@
     <header class="header">
         <div class="header-inner">
             <a href="/" class="brand-link">
-                <div class="brand-icon">
-                    <div class="brand-icon-dot"></div>
-                </div>
-                <span class="brand-name">AI Digest</span>
+                <div class="monolith"></div>
+                <span class="brand-name">digest</span>
             </a>
             <a href="/" class="header-cta">Assinar newsletter</a>
         </div>
@@ -542,7 +538,7 @@
             <a href="termos.html" class="footer-link">Termos</a>
             <a href="privacidade.html" class="footer-link">Privacidade</a>
         </div>
-        <p>AI Digest 2026 - IA pratica para o seu dia a dia</p>
+        <p>Digest 2026 - IA pratica para o seu dia a dia</p>
     </footer>
 
     <script>
@@ -632,7 +628,7 @@
         // Render article
         function renderArticle(article) {
             // Update page title and meta
-            document.title = `${article.title_pt} - AI Digest`;
+            document.title = `${article.title_pt} - Digest`;
 
             // Update OG tags
             document.querySelector('meta[property="og:title"]').content = article.title_pt;
