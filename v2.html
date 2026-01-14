@@ -601,7 +601,7 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">Lido por profissionais de +50 empresas</div>
+                <div class="hero-badge" id="subscriber-count-badge">Lido por <span id="subscriber-count">120</span>+ profissionais todos os dias</div>
                 <h1>3 minutos por dia separam <span class="highlight">quem usa IA</span> de quem é substituído por ela</h1>
                 <p class="hero-subtitle">As novidades de IA que vão impactar seu trabalho, explicadas de forma direta. Sem jargão técnico, sem enrolação.</p>
             </div>
@@ -879,6 +879,16 @@
 
             await submitForm(email, null, null, 'signup-form-cta', 'success-cta');
         });
+
+        // Buscar contagem real de subscribers
+        fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/subscriber-count')
+            .then(r => r.json())
+            .then(data => {
+                if (data.count) {
+                    document.getElementById('subscriber-count').textContent = data.count;
+                }
+            })
+            .catch(() => {});
     </script>
 </body>
 </html>

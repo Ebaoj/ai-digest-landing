@@ -1734,7 +1734,7 @@
 
         <!-- Social Proof -->
         <section class="social-proof">
-            <div class="social-proof-number">80+</div>
+            <div class="social-proof-number" id="subscriber-count">120+</div>
             <p class="social-proof-label">profissionais recebem todo dia</p>
             <div class="social-proof-roles">
                 <span class="role-tag">Vendedores</span>
@@ -2339,6 +2339,16 @@
                 button.disabled = false;
             }
         });
+
+        // Buscar contagem real de subscribers
+        fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/subscriber-count')
+            .then(r => r.json())
+            .then(data => {
+                if (data.count) {
+                    document.getElementById('subscriber-count').textContent = data.count + '+';
+                }
+            })
+            .catch(() => {}); // Silently fail, keep fallback
     </script>
 </body>
 </html>
