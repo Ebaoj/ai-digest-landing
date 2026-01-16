@@ -2213,6 +2213,18 @@
                         });
                     }
 
+                    // Send welcome email with tutorial immediately
+                    try {
+                        await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/send-onboarding-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: email })
+                        });
+                        console.log('Welcome email sent');
+                    } catch (emailError) {
+                        console.log('Welcome email failed:', emailError);
+                    }
+
                     // Process referral if exists
                     if (storedReferralCode) {
                         try {
@@ -2296,6 +2308,18 @@
                             content_name: contentType,
                             content_category: profile
                         });
+                    }
+
+                    // Send welcome email with tutorial immediately
+                    try {
+                        await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/send-onboarding-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email: email })
+                        });
+                        console.log('Welcome email sent');
+                    } catch (emailError) {
+                        console.log('Welcome email failed:', emailError);
                     }
 
                     // Process referral if exists
