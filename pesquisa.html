@@ -446,6 +446,44 @@
             font-size: 13px;
         }
 
+        /* Area Question */
+        .area-question {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .area-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .area-option {
+            flex: 1;
+            min-width: 70px;
+            padding: 10px 8px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s;
+            font-size: 13px;
+        }
+
+        .area-option:hover {
+            border-color: var(--gray);
+        }
+
+        .area-option.selected {
+            border-color: var(--red);
+            background: rgba(166, 61, 47, 0.05);
+        }
+
+        .area-option input {
+            display: none;
+        }
+
         /* Responsive */
         @media (max-width: 500px) {
             .hero-hook-image video {
@@ -789,6 +827,30 @@
             <!-- Email & Submit -->
             <div class="final-section">
                 <input type="email" class="email-input" name="email" placeholder="Seu melhor email (você será o primeiro a saber)" required>
+
+                <!-- Área de atuação -->
+                <div class="area-question">
+                    <label style="display: block; font-size: 14px; color: var(--gray); margin-bottom: 12px;">Qual a sua área?</label>
+                    <div class="area-options">
+                        <label class="area-option">
+                            <input type="radio" name="area" value="Tecnologia">
+                            <span>💻 Tecnologia</span>
+                        </label>
+                        <label class="area-option">
+                            <input type="radio" name="area" value="Negocios">
+                            <span>💼 Negócios</span>
+                        </label>
+                        <label class="area-option">
+                            <input type="radio" name="area" value="Criativo">
+                            <span>🎨 Criativo</span>
+                        </label>
+                        <label class="area-option">
+                            <input type="radio" name="area" value="Outra area">
+                            <span>🤔 Outra</span>
+                        </label>
+                    </div>
+                </div>
+
                 <button type="submit" class="submit-btn">Quero participar</button>
             </div>
         </form>
@@ -922,6 +984,14 @@
             });
         });
 
+        // Area selection
+        document.querySelectorAll('.area-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.area-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
         // Lightbox Gallery
         let allImages = [];
         let currentImageIndex = 0;
@@ -1024,12 +1094,22 @@
 
             const email = document.querySelector('input[name="email"]').value;
             const sugestao = document.querySelector('input[name="sugestao"]').value;
+            const area = document.querySelector('input[name="area"]:checked')?.value || '';
 
-            const data = { produtos, indicacoes, email, sugestao, timestamp: new Date().toISOString() };
+            const data = { produtos, indicacoes, email, sugestao, area, timestamp: new Date().toISOString() };
 
             console.log('Survey data:', data);
 
             try {
+                // Se selecionou área, atualiza o perfil do subscriber
+                if (area) {
+                    await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/update-profile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, profile: area })
+                    });
+                }
+
                 const response = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/survey-response', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
