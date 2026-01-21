@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>digest | Programa de Indicações</title>
+    <title>digest | Complete seu Perfil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -64,6 +64,134 @@
             color: var(--gray);
         }
 
+        /* Progress Indicator */
+        .progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            transition: all 0.3s;
+        }
+
+        .progress-dot.active {
+            background: var(--red);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .progress-dot.completed {
+            background: var(--black);
+        }
+
+        /* Step Container */
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Step 1 - Profile Quiz */
+        .quiz-section {
+            text-align: center;
+        }
+
+        .quiz-section h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .quiz-section p {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .profile-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .profile-option {
+            padding: 24px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            background: white;
+        }
+
+        .profile-option:hover {
+            border-color: var(--gray);
+        }
+
+        .profile-option.selected {
+            border-color: var(--red);
+            background: rgba(166, 61, 47, 0.05);
+        }
+
+        .profile-option input {
+            display: none;
+        }
+
+        .profile-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .profile-name {
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .profile-desc {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .continue-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--black);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .continue-btn:hover {
+            opacity: 0.9;
+        }
+
+        .continue-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+        }
+
+        /* Step 2 - Brindes */
         /* Hero Hook */
         .hero-hook {
             margin-bottom: 40px;
@@ -128,7 +256,7 @@
             flex-wrap: wrap;
         }
 
-        .step {
+        .steps .step-item {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -222,12 +350,6 @@
             font-weight: 500;
             font-size: 14px;
             margin-bottom: 4px;
-        }
-
-        .product-points {
-            font-size: 12px;
-            color: var(--red);
-            font-weight: 500;
         }
 
         .check-icon {
@@ -347,7 +469,7 @@
             color: var(--gray);
         }
 
-        /* Email & Submit */
+        /* Submit */
         .final-section {
             text-align: center;
         }
@@ -390,54 +512,6 @@
             cursor: not-allowed;
         }
 
-        /* Success Container */
-        .success-container {
-            text-align: center;
-            padding: 60px 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .success-icon {
-            font-size: 64px;
-            margin-bottom: 24px;
-        }
-
-        .success-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--black);
-        }
-
-        .success-text {
-            font-size: 16px;
-            color: var(--gray);
-            margin-bottom: 32px;
-            line-height: 1.7;
-        }
-
-        .success-link {
-            display: inline-block;
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 12px 24px;
-            border: 1px solid var(--light-gray);
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .success-link:hover {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-        }
-
         /* Footer */
         .footer {
             text-align: center;
@@ -465,6 +539,10 @@
 
             .referral-options {
                 flex-direction: column;
+            }
+
+            .profile-options {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -595,227 +673,302 @@
             </div>
         </header>
 
-        <!-- Hero Hook - Monólito 2001 -->
-        <div class="hero-hook">
-            <div class="hero-hook-image">
-                <video autoplay muted loop playsinline>
-                    <source src="images/monolith-video.mp4" type="video/mp4">
-                    <img src="images/2001-monolith-imagen.png" alt="Cena do monólito">
-                </video>
-            </div>
-            <h2>O monólito não ensina. Ele revela.</h2>
-            <p>
-                Em <span class="highlight">2001: Uma Odisseia no Espaço</span>, o monólito aparece nos momentos de salto evolutivo.
-                Ele não transforma ninguém — apenas <span class="highlight">mostra o que já era possível</span>.
-            </p>
-            <p style="margin-top: 12px;">
-                A <span class="highlight">digest</span> funciona assim: você não precisa virar programador.
-                Precisa ver <span class="highlight">o que a IA já pode fazer por você</span>.
-            </p>
+        <!-- Progress -->
+        <div class="progress">
+            <div class="progress-dot active" id="dot-1"></div>
+            <div class="progress-dot" id="dot-2"></div>
         </div>
 
-        <!-- CTA -->
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="font-size: 32px; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.5px; font-style: italic;">Espalhe a evolução. Ganhe recompensas.</h1>
-            <p style="font-size: 15px; color: var(--gray);">Estamos montando um programa de indicações e queremos sua opinião: quais prêmios valem seu tempo?</p>
+        <!-- Step 1: Profile Quiz -->
+        <div class="step active" id="step-1">
+            <div class="quiz-section">
+                <h2>Qual a sua area?</h2>
+                <p>Isso nos ajuda a personalizar o conteudo pra voce.</p>
+
+                <div class="profile-options">
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="Tecnologia">
+                        <div class="profile-icon">&#128187;</div>
+                        <div class="profile-name">Tecnologia</div>
+                        <div class="profile-desc">Dev, dados, produto, infra</div>
+                    </label>
+
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="Negocios">
+                        <div class="profile-icon">&#128188;</div>
+                        <div class="profile-name">Negocios</div>
+                        <div class="profile-desc">Vendas, gestao, estrategia</div>
+                    </label>
+
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="Criativo">
+                        <div class="profile-icon">&#127912;</div>
+                        <div class="profile-name">Criativo</div>
+                        <div class="profile-desc">Design, marketing, conteudo</div>
+                    </label>
+
+                    <label class="profile-option">
+                        <input type="radio" name="profile" value="Outra area">
+                        <div class="profile-icon">&#129300;</div>
+                        <div class="profile-name">Outra area</div>
+                        <div class="profile-desc">Saude, direito, educacao...</div>
+                    </label>
+                </div>
+
+                <button type="button" class="continue-btn" id="continue-btn" disabled>Continuar</button>
+            </div>
         </div>
 
-        <!-- How it works -->
-        <div class="how-it-works">
-            <h2>Simples assim</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <span class="step-text">Compartilhe com quem precisa</span>
+        <!-- Step 2: Brindes Survey -->
+        <div class="step" id="step-2">
+            <!-- Hero Hook - Monolito 2001 -->
+            <div class="hero-hook">
+                <div class="hero-hook-image">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/monolith-video.mp4" type="video/mp4">
+                        <img src="images/2001-monolith-imagen.png" alt="Cena do monolito">
+                    </video>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <span class="step-text">Acumule pontos</span>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <span class="step-text">Escolha sua recompensa</span>
+                <h2>O monolito nao ensina. Ele revela.</h2>
+                <p>
+                    Em <span class="highlight">2001: Uma Odisseia no Espaco</span>, o monolito aparece nos momentos de salto evolutivo.
+                    Ele nao transforma ninguem - apenas <span class="highlight">mostra o que ja era possivel</span>.
+                </p>
+                <p style="margin-top: 12px;">
+                    A <span class="highlight">digest</span> funciona assim: voce nao precisa virar programador.
+                    Precisa ver <span class="highlight">o que a IA ja pode fazer por voce</span>.
+                </p>
+            </div>
+
+            <!-- CTA -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="font-size: 32px; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.5px; font-style: italic;">Espalhe a evolucao. Ganhe recompensas.</h1>
+                <p style="font-size: 15px; color: var(--gray);">Estamos montando um programa de indicacoes e queremos sua opiniao: quais premios valem seu tempo?</p>
+            </div>
+
+            <!-- How it works -->
+            <div class="how-it-works">
+                <h2>Simples assim</h2>
+                <div class="steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <span class="step-text">Compartilhe com quem precisa</span>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <span class="step-text">Acumule pontos</span>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <span class="step-text">Escolha sua recompensa</span>
+                    </div>
                 </div>
             </div>
+
+            <form id="surveyForm">
+                <!-- Question 1: Products -->
+                <div class="question">
+                    <h2>Se pudesse escolher 3 premios, quais seriam?</h2>
+                    <p style="color: var(--gray); font-size: 14px; margin-bottom: 8px;">Toque nas imagens pra ver os detalhes.</p>
+                    <p id="selection-status" style="color: var(--red); font-size: 14px; font-weight: 500; margin-bottom: 16px;">0 de 3 selecionados</p>
+                </div>
+
+                <div class="products">
+                    <!-- Camiseta Menos Hype (wave pattern) -->
+                    <div class="product-card" data-product="camiseta-menos-hype" data-category="camiseta">
+                        <input type="checkbox" name="produtos" value="camiseta-menos-hype">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/camiseta-menos-hype-pessoa.png" alt="Camiseta" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/camiseta-menos-hype-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Camiseta "Menos Hype"</div>
+                        </div>
+                    </div>
+
+                    <!-- Camiseta Minimal (logo circular no peito) -->
+                    <div class="product-card" data-product="camiseta-logo" data-category="camiseta">
+                        <input type="checkbox" name="produtos" value="camiseta-logo">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/camiseta-minimal-pessoa.png" alt="Camiseta" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/camiseta-minimal-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Camiseta Minimal</div>
+                        </div>
+                    </div>
+
+                    <!-- Ecobag -->
+                    <div class="product-card" data-product="ecobag" data-category="ecobag">
+                        <input type="checkbox" name="produtos" value="ecobag">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/ecobag-pessoa.png" alt="Ecobag" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/ecobag-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Ecobag Pattern</div>
+                        </div>
+                    </div>
+
+                    <!-- Copo Termico -->
+                    <div class="product-card" data-product="copo" data-category="copo">
+                        <input type="checkbox" name="produtos" value="copo">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/copo-termico-produto.png" alt="Copo" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/copo-termico-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Copo Termico</div>
+                        </div>
+                    </div>
+
+                    <!-- Bone -->
+                    <div class="product-card" data-product="bone" data-category="bone">
+                        <input type="checkbox" name="produtos" value="bone">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/bone-produto.png" alt="Bone" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/bone-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Bone</div>
+                        </div>
+                    </div>
+
+                    <!-- Caderno -->
+                    <div class="product-card" data-product="caderno" data-category="caderno">
+                        <input type="checkbox" name="produtos" value="caderno">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/caderno-produto.png" alt="Caderno" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/caderno-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Caderno</div>
+                        </div>
+                    </div>
+
+                    <!-- Adesivos -->
+                    <div class="product-card" data-product="adesivos" data-category="adesivos">
+                        <input type="checkbox" name="produtos" value="adesivos">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/adesivos-pack.png" alt="Adesivos" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/adesivos-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Pack de Adesivos</div>
+                        </div>
+                    </div>
+
+                    <!-- Cafe Especial -->
+                    <div class="product-card" data-product="cafe-especial" data-category="cafe">
+                        <input type="checkbox" name="produtos" value="cafe-especial">
+                        <div class="check-icon">&#10003;</div>
+                        <div class="product-images">
+                            <img src="images/produtos-imagen/cafe-produto.png" alt="Cafe Especial" onclick="event.stopPropagation(); openLightbox(this)">
+                            <img src="images/produtos-imagen/cafe-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Cafe Especial</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sugestao -->
+                <div class="suggestion-box">
+                    <label for="sugestao">Sentiu falta de algo? O que te faria indicar mais gente?</label>
+                    <input type="text" id="sugestao" name="sugestao" placeholder="Ex: mousepad, garrafa, curso, mentoria...">
+                </div>
+
+                <!-- Question 2: How many referrals -->
+                <div class="referral-question">
+                    <h3>Pra levar esses 3 premios, quantas pessoas voce indicaria?</h3>
+                    <div class="referral-options">
+                        <label class="referral-option">
+                            <input type="radio" name="indicacoes" value="1-2">
+                            <div class="referral-number">1-2</div>
+                            <div class="referral-label">amigos</div>
+                        </label>
+                        <label class="referral-option">
+                            <input type="radio" name="indicacoes" value="3-5">
+                            <div class="referral-number">3-5</div>
+                            <div class="referral-label">amigos</div>
+                        </label>
+                        <label class="referral-option">
+                            <input type="radio" name="indicacoes" value="6-10">
+                            <div class="referral-number">6-10</div>
+                            <div class="referral-label">amigos</div>
+                        </label>
+                        <label class="referral-option">
+                            <input type="radio" name="indicacoes" value="10+">
+                            <div class="referral-number">10+</div>
+                            <div class="referral-label">amigos</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Email & Submit -->
+                <div class="final-section">
+                    <input type="email" class="email-input" name="email" placeholder="Seu melhor email (voce sera o primeiro a saber)" required>
+                    <button type="submit" class="submit-btn">Quero participar</button>
+                </div>
+            </form>
+
+            <footer class="footer">
+                <p>Sua opiniao molda o que vem por ai. Valeu por fazer parte.</p>
+            </footer>
         </div>
-
-        <form id="surveyForm">
-            <!-- Question 1: Products -->
-            <div class="question">
-                <h2>Se pudesse escolher 3 prêmios, quais seriam?</h2>
-                <p style="color: var(--gray); font-size: 14px; margin-bottom: 8px;">Toque nas imagens pra ver os detalhes.</p>
-                <p id="selection-status" style="color: var(--red); font-size: 14px; font-weight: 500; margin-bottom: 16px;">0 de 3 selecionados</p>
-            </div>
-
-            <div class="products">
-                <!-- Camiseta Menos Hype (wave pattern) -->
-                <div class="product-card" data-product="camiseta-menos-hype" data-category="camiseta">
-                    <input type="checkbox" name="produtos" value="camiseta-menos-hype">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/camiseta-menos-hype-pessoa.png" alt="Camiseta" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/camiseta-menos-hype-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Camiseta "Menos Hype"</div>
-                    </div>
-                </div>
-
-                <!-- Camiseta Minimal (logo circular no peito) -->
-                <div class="product-card" data-product="camiseta-logo" data-category="camiseta">
-                    <input type="checkbox" name="produtos" value="camiseta-logo">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/camiseta-minimal-pessoa.png" alt="Camiseta" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/camiseta-minimal-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Camiseta Minimal</div>
-                    </div>
-                </div>
-
-                <!-- Ecobag -->
-                <div class="product-card" data-product="ecobag" data-category="ecobag">
-                    <input type="checkbox" name="produtos" value="ecobag">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/ecobag-pessoa.png" alt="Ecobag" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/ecobag-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Ecobag Pattern</div>
-                    </div>
-                </div>
-
-                <!-- Copo Térmico -->
-                <div class="product-card" data-product="copo" data-category="copo">
-                    <input type="checkbox" name="produtos" value="copo">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/copo-termico-produto.png" alt="Copo" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/copo-termico-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Copo Térmico</div>
-                    </div>
-                </div>
-
-                <!-- Boné -->
-                <div class="product-card" data-product="bone" data-category="bone">
-                    <input type="checkbox" name="produtos" value="bone">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/bone-produto.png" alt="Boné" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/bone-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Boné</div>
-                    </div>
-                </div>
-
-                <!-- Caderno -->
-                <div class="product-card" data-product="caderno" data-category="caderno">
-                    <input type="checkbox" name="produtos" value="caderno">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/caderno-produto.png" alt="Caderno" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/caderno-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Caderno</div>
-                    </div>
-                </div>
-
-                <!-- Adesivos -->
-                <div class="product-card" data-product="adesivos" data-category="adesivos">
-                    <input type="checkbox" name="produtos" value="adesivos">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/adesivos-pack.png" alt="Adesivos" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/adesivos-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Pack de Adesivos</div>
-                    </div>
-                </div>
-
-                <!-- Café Especial -->
-                <div class="product-card" data-product="cafe-especial" data-category="cafe">
-                    <input type="checkbox" name="produtos" value="cafe-especial">
-                    <div class="check-icon">✓</div>
-                    <div class="product-images">
-                        <img src="images/produtos-imagen/cafe-produto.png" alt="Café Especial" onclick="event.stopPropagation(); openLightbox(this)">
-                        <img src="images/produtos-imagen/cafe-close.png" alt="Detalhe" onclick="event.stopPropagation(); openLightbox(this)">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">Café Especial ☕</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sugestão -->
-            <div class="suggestion-box">
-                <label for="sugestao">Sentiu falta de algo? O que te faria indicar mais gente?</label>
-                <input type="text" id="sugestao" name="sugestao" placeholder="Ex: mousepad, garrafa, curso, mentoria...">
-            </div>
-
-            <!-- Question 2: How many referrals -->
-            <div class="referral-question">
-                <h3>Pra levar esses 3 prêmios, quantas pessoas você indicaria?</h3>
-                <div class="referral-options">
-                    <label class="referral-option">
-                        <input type="radio" name="indicacoes" value="1-2">
-                        <div class="referral-number">1-2</div>
-                        <div class="referral-label">amigos</div>
-                    </label>
-                    <label class="referral-option">
-                        <input type="radio" name="indicacoes" value="3-5">
-                        <div class="referral-number">3-5</div>
-                        <div class="referral-label">amigos</div>
-                    </label>
-                    <label class="referral-option">
-                        <input type="radio" name="indicacoes" value="6-10">
-                        <div class="referral-number">6-10</div>
-                        <div class="referral-label">amigos</div>
-                    </label>
-                    <label class="referral-option">
-                        <input type="radio" name="indicacoes" value="10+">
-                        <div class="referral-number">10+</div>
-                        <div class="referral-label">amigos</div>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Email & Submit -->
-            <div class="final-section">
-                <input type="email" class="email-input" name="email" placeholder="Seu melhor email (você será o primeiro a saber)" required>
-                <button type="submit" class="submit-btn">Quero participar</button>
-            </div>
-        </form>
-
-        <footer class="footer">
-            <p>Sua opinião molda o que vem por aí. Valeu por fazer parte.</p>
-        </footer>
     </div>
 
     <!-- Lightbox Gallery -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
         <div class="lightbox-main">
-            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#8249;</button>
             <img src="" alt="" id="lightbox-image">
-            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#8250;</button>
         </div>
         <div class="lightbox-caption" id="lightbox-caption"></div>
         <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
     </div>
 
     <script>
+        // ========== STEP 1: Profile Quiz ==========
+        let selectedProfile = null;
+
+        document.querySelectorAll('.profile-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.profile-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedProfile = this.querySelector('input').value;
+                document.getElementById('continue-btn').disabled = false;
+            });
+        });
+
+        document.getElementById('continue-btn').addEventListener('click', function() {
+            if (!selectedProfile) return;
+
+            // Update progress dots
+            document.getElementById('dot-1').classList.remove('active');
+            document.getElementById('dot-1').classList.add('completed');
+            document.getElementById('dot-2').classList.add('active');
+
+            // Switch steps
+            document.getElementById('step-1').classList.remove('active');
+            document.getElementById('step-2').classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== STEP 2: Brindes Survey ==========
         const MAX_SELECTIONS = 3;
 
-        // Regras de exclusão:
-        // - Camiseta: só pode 1, e não pode com copo nem ecobag
-        // - Copo e Ecobag: não podem juntos
         const EXCLUSION_RULES = {
             'camiseta': ['copo', 'ecobag', 'camiseta'],
             'copo': ['camiseta', 'ecobag'],
@@ -842,7 +995,6 @@
             const selectedCategories = getSelectedCategories();
             const count = selectedCards.length;
 
-            // Pega as categorias que devem ser bloqueadas
             let blockedCategories = new Set();
 
             selectedCategories.forEach(cat => {
@@ -850,9 +1002,6 @@
                     EXCLUSION_RULES[cat].forEach(blocked => blockedCategories.add(blocked));
                 }
             });
-
-            // Se já tem camiseta, bloqueia as outras camisetas (já incluso na regra acima)
-            // Se já selecionou 3, bloqueia todos os não selecionados
 
             document.querySelectorAll('.product-card').forEach(card => {
                 const isSelected = card.classList.contains('selected');
@@ -863,31 +1012,26 @@
                     return;
                 }
 
-                // Se já tem 3 selecionados, desabilita todos os outros
                 if (count >= MAX_SELECTIONS) {
                     card.classList.add('disabled');
                     return;
                 }
 
-                // Se a categoria está bloqueada por exclusão
                 if (blockedCategories.has(category)) {
                     card.classList.add('disabled');
                     return;
                 }
 
-                // Se é uma camiseta e já tem camiseta selecionada
                 if (category === 'camiseta' && selectedCategories.includes('camiseta')) {
                     card.classList.add('disabled');
                     return;
                 }
 
-                // Se é copo ou ecobag e tem camiseta selecionada (já coberto acima, mas deixar explícito)
                 if ((category === 'copo' || category === 'ecobag') && selectedCategories.includes('camiseta')) {
                     card.classList.add('disabled');
                     return;
                 }
 
-                // Se é camiseta e tem copo ou ecobag selecionado
                 if (category === 'camiseta' && (selectedCategories.includes('copo') || selectedCategories.includes('ecobag'))) {
                     card.classList.add('disabled');
                     return;
@@ -897,12 +1041,10 @@
             });
         }
 
-        // Product selection - card inteiro é clicável
+        // Product selection
         document.querySelectorAll('.product-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                // Ignora cliques nas imagens (abre lightbox)
                 if (e.target.closest('.product-images')) return;
-
                 if (this.classList.contains('disabled')) return;
 
                 this.classList.toggle('selected');
@@ -957,7 +1099,6 @@
             document.getElementById('lightbox-image').src = image.src;
             document.getElementById('lightbox-caption').textContent = image.productName;
 
-            // Update active thumbnail
             document.querySelectorAll('.lightbox-thumb').forEach((thumb, i) => {
                 thumb.classList.toggle('active', i === currentImageIndex);
             });
@@ -1012,24 +1153,41 @@
             });
 
             if (produtos.length !== 3) {
-                alert('Por favor, escolha exatamente 3 prêmios!');
+                alert('Por favor, escolha exatamente 3 premios!');
                 return;
             }
 
             const indicacoes = document.querySelector('input[name="indicacoes"]:checked')?.value || '';
             if (!indicacoes) {
-                alert('Por favor, diz quantos amigos você indicaria!');
+                alert('Por favor, diz quantos amigos voce indicaria!');
                 return;
             }
 
             const email = document.querySelector('input[name="email"]').value;
             const sugestao = document.querySelector('input[name="sugestao"]').value;
 
-            const data = { produtos, indicacoes, email, sugestao, timestamp: new Date().toISOString() };
+            const data = {
+                produtos,
+                indicacoes,
+                email,
+                sugestao,
+                profile: selectedProfile,
+                timestamp: new Date().toISOString()
+            };
 
             console.log('Survey data:', data);
 
             try {
+                // First, update the subscriber profile
+                if (selectedProfile) {
+                    await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/update-profile', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, profile: selectedProfile })
+                    });
+                }
+
+                // Then submit the survey
                 const response = await fetch('https://yvhtpboejndktqoxbnbn.supabase.co/functions/v1/survey-response', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

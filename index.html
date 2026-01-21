@@ -1597,7 +1597,7 @@
                             <!-- Header -->
                             <div class="newsletter-preview-header">
                                 <div class="newsletter-preview-logo"><img src="assets/brand/digest-logo-transparent.png" alt="digest"></div>
-                                <div class="newsletter-preview-date">08 Jan 2026</div>
+                                <div class="newsletter-preview-date" id="last-edition-date">20 Jan 2026</div>
                             </div>
 
                             <!-- Destaque -->
@@ -2370,6 +2370,24 @@
             .then(data => {
                 if (data.count) {
                     document.getElementById('subscriber-count').textContent = data.count + '+';
+                }
+            })
+            .catch(() => {}); // Silently fail, keep fallback
+
+        // Busca data da última edição enviada
+        fetch('https://yvhtpboejndktqoxbnbn.supabase.co/rest/v1/edition_plans?status=eq.sent&order=edition_date.desc&limit=1', {
+            headers: {
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2aHRwYm9lam5ka3Rxb3hibnBuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYxODI0NTcsImV4cCI6MjA1MTc1ODQ1N30.gRCqPdBpYi3_6oDVywvVXsi5b-E0es-XHzRWbBKqOtA'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data && data[0] && data[0].edition_date) {
+                    const date = new Date(data[0].edition_date + 'T00:00:00');
+                    const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+                    const formatted = date.getDate().toString().padStart(2, '0') + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+                    const el = document.getElementById('last-edition-date');
+                    if (el) el.textContent = formatted;
                 }
             })
             .catch(() => {}); // Silently fail, keep fallback
