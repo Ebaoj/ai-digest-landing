@@ -467,17 +467,9 @@
             margin-bottom: 40px;
         }
 
-        .quiz-monolith {
-            width: 4px;
-            height: 24px;
-            background: var(--black);
-        }
-
-        .quiz-brand-name {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
+        .quiz-brand img {
+            height: 28px;
+            width: auto;
         }
 
         .quiz-container {
@@ -848,9 +840,25 @@
         }
 
         .newsletter-preview-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .newsletter-preview-logo img {
+            height: 18px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .newsletter-preview-logo .pro-badge {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
             color: #fff;
-            font-size: 16px;
+            font-size: 9px;
             font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
         }
 
         .newsletter-preview-date {
@@ -1404,8 +1412,7 @@
     <div class="quiz-page" id="quiz-page">
         <!-- Brand -->
         <div class="quiz-brand">
-            <div class="quiz-monolith"></div>
-            <span class="quiz-brand-name">digest</span>
+            <img src="assets/brand/digest-logo-transparent.png" alt="digest">
         </div>
 
         <div class="quiz-container">
@@ -1589,7 +1596,7 @@
                         <div class="newsletter-preview" id="newsletter-preview-essencial">
                             <!-- Header -->
                             <div class="newsletter-preview-header">
-                                <div class="newsletter-preview-logo">Digest</div>
+                                <div class="newsletter-preview-logo"><img src="assets/brand/digest-logo-transparent.png" alt="digest"></div>
                                 <div class="newsletter-preview-date">08 Jan 2026</div>
                             </div>
 
@@ -1642,7 +1649,7 @@
                         <div class="newsletter-preview" id="newsletter-preview-pro" style="display: none;">
                             <!-- Header Pro -->
                             <div class="newsletter-preview-header" style="background: #18181b;">
-                                <div class="newsletter-preview-logo">Digest Pro</div>
+                                <div class="newsletter-preview-logo"><img src="assets/brand/digest-logo-transparent.png" alt="digest"><span class="pro-badge">Pro</span></div>
                                 <div class="newsletter-preview-date">15 Dec 2025</div>
                             </div>
 
