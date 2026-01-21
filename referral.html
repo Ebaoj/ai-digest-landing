@@ -37,9 +37,14 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo img {
+            height: 28px;
+            width: auto;
+            filter: brightness(0) invert(1);
         }
 
         .content {
@@ -408,7 +413,9 @@
         <div class="container">
             <!-- Header -->
             <div class="header">
-                <div class="logo">Digest</div>
+                <div class="logo">
+                    <img src="assets/brand/digest-logo-transparent.png" alt="Digest">
+                </div>
             </div>
 
             <!-- Content -->
