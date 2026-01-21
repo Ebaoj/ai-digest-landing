@@ -77,9 +77,13 @@
             margin-bottom: 24px;
         }
 
-        .hero-hook-image img {
+        .hero-hook-image img,
+        .hero-hook-image video {
             width: 100%;
             display: block;
+            aspect-ratio: 2.76/1;
+            object-fit: cover;
+            object-position: center;
         }
 
         .hero-hook h2 {
@@ -542,7 +546,10 @@
         <!-- Hero Hook - Monólito 2001 -->
         <div class="hero-hook">
             <div class="hero-hook-image">
-                <img src="images/2001-monolith-imagen.png" alt="Cena do monólito de 2001: Uma Odisseia no Espaço">
+                <video autoplay muted loop playsinline>
+                    <source src="images/monolith-video.mp4" type="video/mp4">
+                    <img src="images/2001-monolith-imagen.png" alt="Cena do monólito">
+                </video>
             </div>
             <h2>O monólito não ensina. Ele revela.</h2>
             <p>

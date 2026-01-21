@@ -696,19 +696,19 @@
         .quiz-result-product-logo {
             width: 48px;
             height: 48px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.95);
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
-        .quiz-result-product-logo-dot {
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            border-radius: 50%;
+        .quiz-result-product-logo img {
+            width: 36px;
+            height: auto;
+            object-fit: contain;
         }
 
         .quiz-result-product-info {
@@ -1537,7 +1537,7 @@
                         <!-- Header com gradiente -->
                         <div class="quiz-result-product-header" id="result-product-header">
                             <div class="quiz-result-product-logo" id="result-product-logo">
-                                <div class="quiz-result-product-logo-dot"></div>
+                                <img src="assets/brand/digest-logo-transparent.png" alt="digest">
                             </div>
                             <div class="quiz-result-product-info">
                                 <span class="quiz-result-product-name" id="result-product-name">Digest</span>
@@ -2094,8 +2094,8 @@
             if (profile.contentType === 'tecnico') {
                 // Digest Pro - estilo preto premium
                 header.style.background = 'linear-gradient(135deg, #18181b 0%, #27272a 100%)';
-                logo.style.background = 'rgba(255,255,255,0.1)';
-                logo.style.borderColor = 'rgba(255,255,255,0.2)';
+                logo.style.background = 'rgba(255,255,255,0.95)';
+                logo.style.borderColor = 'rgba(255,255,255,0.3)';
                 tag.style.background = '#fff';
                 tag.style.color = '#18181b';
                 tag.textContent = 'GRÁTIS';
@@ -2105,7 +2105,7 @@
             } else {
                 // Digest normal - estilo v22
                 header.style.background = 'var(--black)';
-                logo.style.background = 'rgba(255,255,255,0.2)';
+                logo.style.background = 'rgba(255,255,255,0.95)';
                 logo.style.borderColor = 'rgba(255,255,255,0.3)';
                 tag.style.background = '#fff';
                 tag.style.color = 'var(--black)';
